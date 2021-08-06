@@ -9,24 +9,17 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class sampleSteps {
+
     WebDriver driver;
     public sampleSteps(CommonSteps commonsteps)
     {
         this.driver = commonsteps.getDriver();
     }
-   /* @Given("I launch chrome browser")
-    public void i_launch_chrome_browser() {
 
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
-    }*/
-
+    //Facebook logo and title
     @Given("I open Facebook login page")
     public void i_open_facebook_login_page() {
         driver.get("https://www.facebook.com/");
-
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
     }
 
     @When("I verify that the logo is present on page")
@@ -35,22 +28,12 @@ public class sampleSteps {
         boolean status = driver.findElement(By.xpath("//*[@id=\"content\"]/div/div/div/div[1]/div[1]/img")).isDisplayed();
         String t =driver.getTitle();
         System.out.println(t);
-        //Assert.assertEquals(true,status);
         Assert.assertTrue(status);
         Assert.assertEquals("Facebook - Log In or Sign Up",t);
-        // Write code here that tu"rns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
 
     }
 
-    @Then("close browser")
-    public void close_browser() {
-
-        driver.quit();
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
-    }
-
+    //Facebook invalid login
     @When("I enter email as {string}")
     public void invalid_email(String email) {
         driver.findElement(By.id("email")).sendKeys(email);
@@ -58,6 +41,7 @@ public class sampleSteps {
 
     @And("I click on login button")
     public void iClickOnLoginButton() {
+
         driver.findElement(By.name("login")).click();
     }
 
@@ -65,7 +49,6 @@ public class sampleSteps {
     public void itShouldRedirectToErrorPage() {
 
         System.out.println("Login failed");
-        driver.quit();
     }
 
     //Ebay Search Steps
@@ -81,7 +64,6 @@ public class sampleSteps {
 
         for(WebElement w : Category)
         {
-
             if(w.getText().equals(str2))
             {
                 w.click();
@@ -90,7 +72,6 @@ public class sampleSteps {
         }
         driver.findElement(By.xpath("//*[@id=\"gh-btn\"]")).click();
         Thread.sleep(3000);
-
     }
 
     @Then("It should display all items in that Category")
