@@ -22,7 +22,7 @@ public class sampleSteps {
         this.driver = commonsteps.getDriver();
     }
 
-    //Facebook logo and title
+    //Facebook logo and title verify
     @Given("I open Facebook login page")
     public void i_open_facebook_login_page() {
         driver.get("https://www.facebook.com/");
