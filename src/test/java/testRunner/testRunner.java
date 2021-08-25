@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
         features = "src/test/java/Features",
         glue = "StepDefinitions",
         plugin = {"pretty", "html:target/Report/report.html"},
+        tags="@H1",
         publish = false,
         dryRun = false
 )

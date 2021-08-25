@@ -1,4 +1,5 @@
 Feature: Facebook Login
+  @H1
   Scenario: Logo present on Facebook login page
     Given I open Facebook login page
     When I verify that the logo is present on page
