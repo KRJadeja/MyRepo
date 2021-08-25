@@ -16,6 +16,7 @@ public class sampleSteps {
     {
         this.driver = commonsteps.getDriver();
     }*/
+
    public sampleSteps(CommonSteps commonsteps)
     {
         this.driver = commonsteps.getDriver();
