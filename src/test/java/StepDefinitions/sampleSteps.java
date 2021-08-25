@@ -11,7 +11,13 @@ import java.util.List;
 public class sampleSteps {
 
     WebDriver driver;
-    public sampleSteps(CommonSteps commonsteps)
+
+    /*public sampleSteps(CommonSteps commonsteps)
+    {
+        this.driver = commonsteps.getDriver();
+    }*/
+
+   public sampleSteps(CommonSteps commonsteps)
     {
         this.driver = commonsteps.getDriver();
     }
@@ -30,6 +36,7 @@ public class sampleSteps {
         System.out.println(t);
         Assert.assertTrue(status);
         Assert.assertEquals("Facebook - Log In or Sign Up",t);
+
 
     }
 
