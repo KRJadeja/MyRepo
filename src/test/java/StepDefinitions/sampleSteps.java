@@ -35,7 +35,7 @@ public class sampleSteps {
         String t =driver.getTitle();
         System.out.println(t);
         Assert.assertTrue(status);
-        Assert.assertEquals("Facebook - Log In or Sign Up",t);
+        Assert.assertEquals("Facebook - Log In or Sign ",t);
 
 
     }
