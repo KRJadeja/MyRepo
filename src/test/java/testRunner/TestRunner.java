@@ -12,5 +12,5 @@ import org.junit.runner.RunWith;
         publish = false,
         dryRun = false
 )
-public class testRunner {
+public class TestRunner {
 }
