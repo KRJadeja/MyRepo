@@ -20,8 +20,8 @@ public class CommonSteps {
             WebDriverManager.chromedriver().setup();
             WebDriver driver = new ChromeDriver(chromeOptions);*/
 
-        //WebDriverManager.chromedriver().version("91.0.4472.101").setup();
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().version("91.0.4472.101").setup();
+        //WebDriverManager.chromedriver().setup();
         this.driver = new ChromeDriver();
         driver.manage().window().maximize();
         //driver.manage().deleteAllCookies();
