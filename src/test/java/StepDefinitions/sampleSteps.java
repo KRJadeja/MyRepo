@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class sampleSteps {
@@ -17,8 +18,7 @@ public class sampleSteps {
         this.driver = commonsteps.getDriver();
     }*/
 
-   public sampleSteps(CommonSteps commonsteps)
-    {
+   public sampleSteps(CommonSteps commonsteps) throws MalformedURLException {
         this.driver = commonsteps.getDriver();
     }
 
