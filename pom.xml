@@ -7,6 +7,7 @@
     <groupId>MyProject</groupId>
     <artifactId>MyRepo</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <!--<packaging>jar</packaging>-->
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -112,11 +113,11 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>saucerest</artifactId>
             <version>1.0.40</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.saucelabs</groupId>
@@ -125,12 +126,24 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
+       <!-- <dependency>
             <groupId>com.saucelabs</groupId>
             <artifactId>sauce_testng</artifactId>
             <version>2.1.23</version>
             <scope>test</scope>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -148,6 +161,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
+                    <includes>
+                        <include>**/TestRunner.java</include>
+                    </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                     <systemPropertyVariables>
                         <environment>e0</environment>
@@ -156,7 +172,7 @@
                 </configuration>
             </plugin>
 
-            <plugin>
+           <!-- <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
                 <version>2.8.0</version>
@@ -169,7 +185,7 @@
                         </goals>
 
                         <configuration>
-<!--                            <skip>false</skip>-->
+&lt;!&ndash;                            <skip>false</skip>&ndash;&gt;
                             <outputDirectory>${project.build.directory}/masterthought-report</outputDirectory>
                             <cucumberOutput>${project.build.directory}/Report/report.json</cucumberOutput>
 
@@ -179,7 +195,7 @@
                     </execution>
                 </executions>
             </plugin>
-
+-->
         </plugins>
     </build>
 
