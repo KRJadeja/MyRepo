@@ -26,24 +26,25 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 //public class CommonSteps implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider {
-  public class CommonSteps implements SauceOnDemandSessionIdProvider {
+ // public class CommonSteps implements SauceOnDemandSessionIdProvider {
+public class CommonSteps {
     private WebDriver driver;
     Scenario scenario;
 
-    public static final String USERNAME = System.getenv("SAUCE_USERNAME");
+   /* public static final String USERNAME = System.getenv("SAUCE_USERNAME");
     public static final String ACCESS_KEY =System.getenv("SAUCE_ACCESS_KEY");
     public static final String URL = "https://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:443/wd/hub";
 
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME,ACCESS_KEY);
     private final ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
-    private final ThreadLocal<String> sessionId = new ThreadLocal<String>();
+    private final ThreadLocal<String> sessionId = new ThreadLocal<String>();*/
 
     @Before
     public void getScenarioName(Scenario scenario) {
         this.scenario = scenario;
 
-        System.out.println("Sessionid "+ sessionId);
-        System.out.println("Authentication "+ authentication);
+       // System.out.println("Sessionid "+ sessionId);
+       // System.out.println("Authentication "+ authentication);
     }
     @Before
     WebDriver getDriver() throws MalformedURLException {
@@ -95,18 +96,18 @@ import java.net.URL;
        // webDriver.get().quit();
         driver.quit();
     }
-    @Rule
+   /* @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this,authentication);
 
     @Override
     public String getSessionId() {
         return sessionId.get();
     }
-    /*public SauceREST getSauceRest()
+    *//*public SauceREST getSauceRest()
     {
         return this.sauceRest();
-    }*/
+    }*//*
     public SauceOnDemandAuthentication getAuthentication() {
         return authentication;
-    }
+    }*/
 }
