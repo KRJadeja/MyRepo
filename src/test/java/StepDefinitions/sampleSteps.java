@@ -1,13 +1,21 @@
 package StepDefinitions;
 
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.Properties;
 
 public class sampleSteps {
 
@@ -61,7 +69,8 @@ public class sampleSteps {
     //Ebay Search Steps
     @Given("I am on Ebay Home")
     public void i_am_on_ebay_home() {
-        driver.get("https://www.ebay.com/");
+       driver.get("https://www.ebay.com/");
+        //driver.get("http://www.google.com");
     }
 
     @When("I search for {string} in {string} Category")
@@ -86,4 +95,10 @@ public class sampleSteps {
         driver.quit();
     }
 
+    @Then("It should redirect to login page with error")
+    public void itShouldRedirectToLoginPageWithErrorMessage(DataTable datatbl) {
+
+      System.out.println("Here  "+datatbl.cell(1,0));
+
+    }
 }
