@@ -91,7 +91,7 @@ import java.net.URL;
 
     //@DataProvider(name= "DFDF")
 
-    public WebDriver getWebDriver()
+    private WebDriver getWebDriver()
     {
         return webDriver.get();
     }
