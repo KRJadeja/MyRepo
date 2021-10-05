@@ -52,12 +52,12 @@ import java.net.URL;
        // System.out.println("Authentication "+ authentication);
     }
 
-    @Before
+    /*@Before
     public void setUp() throws MalformedURLException {
         //To Run on Local
-       /*System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
+       *//*System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
         driver=new ChromeDriver();
-        driver.manage().window().maximize();*/
+        driver.manage().window().maximize();*//*
 
         //To Run WebDriverManager
         //ChromeOptions chromeOptions = new ChromeOptions();
@@ -88,16 +88,31 @@ import java.net.URL;
        // return webDriver.get();
 
         //Geting System Environment from pom file
-       /* if(System.getProperty("myname").equals("Kiran"))
-            System.out.println("Environment :" +System.getProperty("myname") );*/
+       *//* if(System.getProperty("myname").equals("Kiran"))
+            System.out.println("Environment :" +System.getProperty("myname") );*//*
         //String id = driver.session_id;
        //return driver;
-    }
+    }*/
 
     //@DataProvider(name= "DFDF")
 
-    public WebDriver getDriver()
-    {
+    public WebDriver getDriver() throws MalformedURLException {
+        //To Run on Saucelabs
+        ChromeOptions options = new ChromeOptions();
+        options.setCapability("version", "latest");
+        options.setCapability("platform","Windows 10");
+        options.setCapability("name",jobName);
+        //options.setCapability("name","test1");
+        options.setCapability("build","kiran");
+        //DesiredCapabilities caps = new DesiredCapabilities.chrome();
+
+        //driver = new RemoteWebDriver(new URL(URL), options);
+        driver.set(new RemoteWebDriver(new URL(URL), options));
+        //webDriver.set(new RemoteWebDriver(new URL(URL), options));
+        //id = ((RemoteWebDriver) getDriver()).getSessionId().toString();
+        sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
+        System.out.println("Session ID : "+getSessionId());
+        // return webDriver.get();
         return driver.get();
         //return driver;
     }

@@ -14,7 +14,7 @@ public class EbayHome_Actions {
 	private WebDriver driver;
 	EbayHome_Elements ebayhome_elements;
 	
-	public EbayHome_Actions(CommonSteps common_steps) {
+	public EbayHome_Actions(CommonSteps common_steps) throws MalformedURLException {
 		this.driver = common_steps.getDriver();
 		ebayhome_elements = new EbayHome_Elements(driver);
 	}
