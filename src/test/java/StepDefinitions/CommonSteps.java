@@ -110,7 +110,7 @@ import java.net.URL;
         driver.set(new RemoteWebDriver(new URL(URL), options));
         //webDriver.set(new RemoteWebDriver(new URL(URL), options));
         //id = ((RemoteWebDriver) getDriver()).getSessionId().toString();
-        sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
+        sessionId.set(((RemoteWebDriver) driver.get()).getSessionId().toString());
         System.out.println("Session ID : "+getSessionId());
         // return webDriver.get();
         return driver.get();
