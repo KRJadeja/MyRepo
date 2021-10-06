@@ -28,18 +28,17 @@ import java.net.URL;
 //public class CommonSteps implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider {
  public class CommonSteps implements SauceOnDemandSessionIdProvider {
 //public class CommonSteps {
-    //private WebDriver driver;
-    //Scenario scenario;
 
     public static final String USERNAME = System.getenv("SAUCE_USERNAME");
     public static final String ACCESS_KEY =System.getenv("SAUCE_ACCESS_KEY");
-    public static final String URL = "https://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:443/wd/hub";
+    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME,ACCESS_KEY);
+    public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.saucelabs.com:443/wd/hub";
     public final String BUILD = System.getenv("JENKINS_BUILD_NUMBER");
 
-    public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME,ACCESS_KEY);
     private final ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
     private final ThreadLocal<String> sessionId = new ThreadLocal<String>();
-
+    //private WebDriver driver;
+    //Scenario scenario;
     public String jobName;
     String id;
 
@@ -47,7 +46,12 @@ import java.net.URL;
     public void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
     }
-
+    /*@Before
+    public void setUp(){
+        System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
+        driver.set(new ChromeDriver());
+        driver.get().manage().window().maximize();
+    }*/
     @Before
     public void setUp() throws MalformedURLException {
         //To Run on Saucelabs
@@ -62,36 +66,27 @@ import java.net.URL;
 
         //id = ((RemoteWebDriver) getDriver()).getSessionId().toString();
         sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
+        //System.out.println("Session ID : "+getSessionId());
 
-        System.out.println("Session ID : "+getSessionId());
-
-        //return driver;
     }
-
     public WebDriver getDriver()
     {
         return driver.get();
-        //return driver;
     }
     @After
     public void tierDown()
     {
-        // id = ((RemoteWebDriver) getDriver()).getSessionId().toString();
-        //sessionId.set(id);
-        //driver.quit();
-        //webDriver.get().quit();
         driver.get().quit();
     }
-    @Rule
-    public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this,authentication);
 
     @Override
     public String getSessionId() {
-
         return sessionId.get();
     }
-    public SauceOnDemandAuthentication getAuthentication() {
+   /* @Rule
+    public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this,authentication);
 
+    public SauceOnDemandAuthentication getAuthentication() {
         return authentication;
-    }
+    }*/
 }
