@@ -28,15 +28,15 @@ import java.net.URL;
 //public class CommonSteps implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider {
  public class CommonSteps implements SauceOnDemandSessionIdProvider {
 //public class CommonSteps {
-    private WebDriver driver;
-    Scenario scenario;
+    //private WebDriver driver;
+    //Scenario scenario;
 
     public static final String USERNAME = System.getenv("SAUCE_USERNAME");
     public static final String ACCESS_KEY =System.getenv("SAUCE_ACCESS_KEY");
     public static final String URL = "https://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:443/wd/hub";
 
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME,ACCESS_KEY);
-    private final ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
+    private final ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
     private final ThreadLocal<String> sessionId = new ThreadLocal<String>();
 
     public String jobName;
@@ -45,61 +45,41 @@ import java.net.URL;
     @Before(order = 0)
     public void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
-       // System.out.println("Sessionid "+ sessionId);
-       // System.out.println("Authentication "+ authentication);
     }
 
     @Before
-    public WebDriver getDriver() throws MalformedURLException {
-        //To Run on Local
-       /*System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
-        driver=new ChromeDriver();
-        driver.manage().window().maximize();*/
-
-        //To Run WebDriverManager
-        //ChromeOptions chromeOptions = new ChromeOptions();
-        //WebDriverManager.chromedriver().setup();
-        //this.driver = new ChromeDriver(chromeOptions);
-        //webDriver.set(new ChromeDriver(chromeOptions));
-        //driver.manage().window().maximize();
-        //WebDriverManager.chromedriver().version("91.0.4472.101").setup();
-        //driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        //driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        //driver.manage().deleteAllCookies();
-
+    public void setUp() throws MalformedURLException {
         //To Run on Saucelabs
         ChromeOptions options = new ChromeOptions();
         options.setCapability("version", "latest");
         options.setCapability("platform","Windows 10");
         options.setCapability("name",jobName);
-        //options.setCapability("name","test1");
         options.setCapability("build","kiran");
-        //DesiredCapabilities caps = new DesiredCapabilities.chrome();
 
         //driver = new RemoteWebDriver(new URL(URL), options);
-        webDriver.set(new RemoteWebDriver(new URL(URL), options));
-        id = ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
-        sessionId.set(id);
-        return webDriver.get();
+        driver.set(new RemoteWebDriver(new URL(URL), options));
 
-        //Geting System Environment from pom file
-       /* if(System.getProperty("myname").equals("Kiran"))
-            System.out.println("Environment :" +System.getProperty("myname") );*/
-        //String id = driver.session_id;
-       //return driver;
+        //id = ((RemoteWebDriver) getDriver()).getSessionId().toString();
+        sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
+
+        System.out.println("Session ID : "+getSessionId());
+
+        //return driver;
     }
 
-    //@DataProvider(name= "DFDF")
-
-    private WebDriver getWebDriver()
+    public WebDriver getDriver()
     {
-        return webDriver.get();
+        return driver.get();
+        //return driver;
     }
     @After
     public void tierDown()
     {
-
-        webDriver.get().quit();
+        // id = ((RemoteWebDriver) getDriver()).getSessionId().toString();
+        //sessionId.set(id);
+        //driver.quit();
+        //webDriver.get().quit();
+        driver.get().quit();
     }
     @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this,authentication);
