@@ -43,12 +43,12 @@ import java.net.URL;
     String id;
 
     @Before(order = 0)
-    public void getScenarioName(Scenario scenario) {
+    private void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
     }
 
     @Before
-    public void setUp() throws MalformedURLException {
+    private void setUp() throws MalformedURLException {
         //To Run on Saucelabs
         ChromeOptions options = new ChromeOptions();
         options.setCapability("version", "latest");
