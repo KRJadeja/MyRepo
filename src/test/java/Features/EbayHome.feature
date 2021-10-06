@@ -8,6 +8,7 @@ Feature: Ebay Home Page Scenarios
     Then I navigate to Advanced Search page
 
   #@P1 @setCookies @Test
+  @H1
   Scenario: Seach items count
     Given I am on Eaby Home Page
     When I serach for 'iPhone 11'
