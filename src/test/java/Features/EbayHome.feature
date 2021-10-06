@@ -35,5 +35,5 @@ Feature: Ebay Home Page Scenarios
     Examples: 
       | link    | url                                                            | title       |
       | Motors  | https://www.ebay.com/b/Auto-Parts-and-Vehicles/6000/bn_1865334 | eBay Motors |
-#      | Fashion | https://www.ebay.com/b/Fashion/bn_7000259856                   | Fashion     |
-#      | Toys    | https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497             | Toys        |
+      | Fashion | https://www.ebay.com/b/Fashion/bn_7000259856                   | Fashion     |
+      | Toys    | https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497             | Toys        |

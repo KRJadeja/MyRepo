@@ -6,11 +6,11 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         //features = {"classpath:NewFeatures/Sample.feature"},
-        features = {"src/test/java/Features"},
+        features = {"src/test/java/Features/EbayHome.feature"},
         glue = "StepDefinitions",
         plugin = {"pretty", "html:target/Report/report.html"},
         //plugin = {"pretty", "json:target/Report/report.json"},
-        tags="@H1",
+        //tags="@H1",
         publish = false,
         dryRun = false
 )
