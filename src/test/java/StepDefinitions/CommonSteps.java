@@ -34,6 +34,7 @@ import java.net.URL;
     public static final String USERNAME = System.getenv("SAUCE_USERNAME");
     public static final String ACCESS_KEY =System.getenv("SAUCE_ACCESS_KEY");
     public static final String URL = "https://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:443/wd/hub";
+    public final String BUILD = System.getenv("JENKINS_BUILD_NUMBER");
 
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME,ACCESS_KEY);
     private final ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
@@ -54,7 +55,7 @@ import java.net.URL;
         options.setCapability("version", "latest");
         options.setCapability("platform","Windows 10");
         options.setCapability("name",jobName);
-        options.setCapability("build","kiran");
+        options.setCapability("build",BUILD);
 
         //driver = new RemoteWebDriver(new URL(URL), options);
         driver.set(new RemoteWebDriver(new URL(URL), options));
