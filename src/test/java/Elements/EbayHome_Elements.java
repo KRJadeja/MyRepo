@@ -16,7 +16,13 @@ public class EbayHome_Elements {
 	@FindBy(xpath = "//input[@id='gh-btn']") public WebElement searchButton;
 	@FindBy(css = "h1.srp-controls__count-heading>span.BOLD:first-child") public WebElement numOfItems;
 	@FindBy(xpath = "//select[@id='gh-cat']/option']") public List<WebElement> catOptions;
-	
+
+	@FindBy(xpath = "//*[@id=\"email\"]") public WebElement loginId;
+	@FindBy(xpath = "//*[@id=\"pass\"]") public WebElement loginpwd;
+	@FindBy(xpath = "//*[@id=\"u_0_d_wU\"]") public WebElement loginbtn;
+
+
+
 	public EbayHome_Elements(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

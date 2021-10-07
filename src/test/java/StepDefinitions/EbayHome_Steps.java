@@ -76,4 +76,20 @@ public class EbayHome_Steps {
 	    	fail("Title mismatch");
 	    }
 	}
+
+	@Given("I am on Facebook Login page")
+	public void iAmOnFacebookLoginPage() {
+		common_actions.goToUrl("https://www.facebook.com/");
+	}
+
+	@When("I enter {string} and {string} in given textbox and click login button")
+	public void enter_useridnpwwd(String uid, String pwd) {
+		ebayhome_actions.enterUidPwd(uid,pwd);
+	}
+
+	@Then("It should redirect me to page")
+	public void itShouldRedirectMeToPage() {
+		String acturl = common_actions.getCurrentPageUrl();
+		System.out.println("Page Redircted to : "+ acturl);
+	}
 }

@@ -7,6 +7,15 @@ Feature: Ebay Home Page Scenarios
     When I click on Advanced Link
     Then I navigate to Advanced Search page
 
+    @H1
+    Scenario Outline: Facebook login page
+      Given I am on Facebook Login page
+      When I enter '<Userid>' and '<Pwd>' in given textbox and click login button
+      Then It should redirect me to page
+    Examples:
+      | Userid  | Pwd |
+      | FViewer | P@ssw@rd  |
+
   #@P1 @setCookies @Test
   @H1
   Scenario: Seach items count
@@ -23,7 +32,7 @@ Feature: Ebay Home Page Scenarios
   @P240 @setCookies
   Scenario: Search an item in category
     Given I am on Eaby Home Page
-    When I serach for 'soap' in 'BaBy' category
+    When I serach for 'soap' in 'Baby' category
     Then I validate atleast 50 search items present
 
 	#@P500

@@ -51,5 +51,10 @@ public class EbayHome_Actions {
 	public void clickOnLinkByText(String Text) {
 		driver.findElement(By.linkText(Text)).click();
 	}
-	
+
+	public void enterUidPwd(String uid, String pwd) {
+		ebayhome_elements.loginId.sendKeys(uid);
+		ebayhome_elements.loginpwd.sendKeys(pwd);
+		ebayhome_elements.loginbtn.click();
+	}
 }
