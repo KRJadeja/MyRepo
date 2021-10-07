@@ -19,8 +19,7 @@ public class EbayHome_Elements {
 
 	@FindBy(xpath = "//*[@id=\"email\"]") public WebElement loginId;
 	@FindBy(xpath = "//*[@id=\"pass\"]") public WebElement loginpwd;
-	@FindBy(xpath = "//*[@id=\"u_0_d_wU\"]") public WebElement loginbtn;
-
+	@FindBy(xpath = "//*[@name=\"login\"]") public WebElement loginbtn;
 
 
 	public EbayHome_Elements(WebDriver driver) {
