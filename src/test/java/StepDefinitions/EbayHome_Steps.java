@@ -97,4 +97,9 @@ public class EbayHome_Steps {
 		System.out.println("Page Redircted to : "+ acturl);
 
 	}
+
+	@When("I enter valid credential in given textbox and click login button")
+	public void iEnterValidCredentialInGivenTextboxAndClickLoginButton() {
+		ebayhome_actions.enterUidPwd(MyAppProperties.getUserId(),MyAppProperties.getPwd());
+	}
 }

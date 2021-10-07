@@ -1,7 +1,7 @@
 Feature: Ebay Home Page Scenarios
 Background: Facebook login page
   Given I am on Facebook Login page
-  When I enter 'FViewer' and 'P@ssw@rd' in given textbox and click login button
+  When I enter valid credential in given textbox and click login button
   Then It should redirect me to page
 
  # @P1 @P2
