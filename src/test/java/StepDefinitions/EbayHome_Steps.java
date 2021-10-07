@@ -5,6 +5,8 @@ import Actions.EbayHome_Actions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import util.MyAppProperties;
+import util.MyAppProperties.*;
 
 import static org.junit.Assert.fail;
 
@@ -20,7 +22,8 @@ public class EbayHome_Steps {
 	@Given("I am on Eaby Home Page")
 	public void i_am_on_Eaby_Home_Page() {
 	  // common_actions.goToUrl("https://www.ebay.com/");
-		common_actions.navigaetUrl("https://www.ebay.com/");
+		common_actions.navigaetUrl(MyAppProperties.getBaseUrl());
+
 	}
 
 	@When("I click on Advanced Link")
