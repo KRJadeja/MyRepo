@@ -29,14 +29,14 @@ import java.net.URL;
  public class CommonSteps implements SauceOnDemandSessionIdProvider {
 //public class CommonSteps {
 
-    public static final String USERNAME = System.getenv("SAUCE_USERNAME");
-    public static final String ACCESS_KEY =System.getenv("SAUCE_ACCESS_KEY");
+    public String USERNAME = System.getenv("SAUCE_USERNAME");
+    public String ACCESS_KEY =System.getenv("SAUCE_ACCESS_KEY");
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME,ACCESS_KEY);
     public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.saucelabs.com:443/wd/hub";
     public final String BUILD = System.getenv("JENKINS_BUILD_NUMBER");
 
-    private final ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
-    private final ThreadLocal<String> sessionId = new ThreadLocal<String>();
+    private ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+    private ThreadLocal<String> sessionId = new ThreadLocal<String>();
     //private WebDriver driver;
     //Scenario scenario;
     public String jobName;
