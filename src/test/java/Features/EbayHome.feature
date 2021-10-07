@@ -1,9 +1,7 @@
 Feature: Ebay Home Page Scenarios
 Background: Facebook login page
   Given I am on Facebook Login page
-  When I enter '<Userid>' and '<Pwd>' in given textbox and click login button
-    | Userid  | Pwd |
-    | FViewer | P@ssw@rd  |
+  When I enter 'FViewer' and 'P@ssw@rd' in given textbox and click login button
   Then It should redirect me to page
 
  # @P1 @P2
