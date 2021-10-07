@@ -25,4 +25,8 @@ public class Common_Actions {
     public String getCurrentPageTitle() {
         return driver.getTitle();
     }
+
+    public void navigaetUrl(String nurl) {
+        driver.navigate().to(nurl);
+    }
 }
