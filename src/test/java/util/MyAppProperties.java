@@ -15,7 +15,7 @@ public class MyAppProperties {
     }
     public static String getPwd()
     {
-        String pwd = quote("admin");
+        String pwd = quote("admin@123");
         return pwd;
     }
 }
