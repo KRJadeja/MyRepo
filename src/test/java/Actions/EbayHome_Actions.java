@@ -57,4 +57,9 @@ public class EbayHome_Actions {
 		ebayhome_elements.loginpwd.sendKeys(pwd);
 		ebayhome_elements.loginbtn.click();
 	}
+
+	public void showwelcomemsg() {
+		String actmsg = ebayhome_elements.msg.getText();
+		System.out.println(actmsg);
+	}
 }
