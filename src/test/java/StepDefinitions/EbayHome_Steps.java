@@ -6,7 +6,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import util.MyAppProperties;
-import util.MyAppProperties.*;
 
 import static org.junit.Assert.fail;
 
@@ -101,5 +100,15 @@ public class EbayHome_Steps {
 	@When("I enter valid credential in given textbox and click login button")
 	public void iEnterValidCredentialInGivenTextboxAndClickLoginButton() {
 		ebayhome_actions.enterUidPwd(MyAppProperties.getUserId(),MyAppProperties.getPwd());
+	}
+
+	@Given("I launch herokuapp with basic auth")
+	public void iLaunchHerokuappWithBasicAuth() {
+		common_actions.goToUrl("https://admin:admin@the-internet.herokuapp.com/basic_auth");
+	}
+
+	@Then("I navigate to Welcome page")
+	public void iNavigateToWelcomePage() {
+		ebayhome_actions.showwelcomemsg();
 	}
 }
