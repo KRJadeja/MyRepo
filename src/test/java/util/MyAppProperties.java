@@ -1,5 +1,7 @@
 package util;
 
+import static java.util.regex.Pattern.quote;
+
 public class MyAppProperties {
     public static String  getBaseUrl()
     {
@@ -8,12 +10,12 @@ public class MyAppProperties {
     }
     public static String getUserId()
     {
-        String Userid = "admin";
+        String Userid = quote("admin");
         return Userid;
     }
     public static String getPwd()
     {
-        String pwd = "admin@123";
+        String pwd = quote("admin");
         return pwd;
     }
 }
