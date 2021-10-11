@@ -13,7 +13,7 @@ public class MyAppProperties {
     }
     public static String getPwd()
     {
-        String pwd = "admin";
+        String pwd = "admin@123";
         return pwd;
     }
 }

@@ -104,7 +104,7 @@ public class EbayHome_Steps {
 
 	@Given("I launch herokuapp with basic auth")
 	public void iLaunchHerokuappWithBasicAuth() {
-		common_actions.goToUrl("https://"+MyAppProperties.getUserId()+":"+MyAppProperties.getPwd()+"admin@the-internet.herokuapp.com/basic_auth");
+		common_actions.goToUrl("https://"+MyAppProperties.getUserId()+":"+MyAppProperties.getPwd()+"@the-internet.herokuapp.com/basic_auth");
 	}
 
 	@Then("I navigate to Welcome page")
