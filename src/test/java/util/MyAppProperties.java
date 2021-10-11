@@ -8,12 +8,12 @@ public class MyAppProperties {
     }
     public static String getUserId()
     {
-        String Userid = "FViewer";
+        String Userid = "admin";
         return Userid;
     }
     public static String getPwd()
     {
-        String pwd = "P@ssw@rd";
+        String pwd = "admin";
         return pwd;
     }
 }
