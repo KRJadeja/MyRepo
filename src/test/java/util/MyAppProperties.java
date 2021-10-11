@@ -1,6 +1,8 @@
 package util;
 
-import static java.util.regex.Pattern.quote;
+//import static java.util.regex.Pattern.quote;
+
+import static jdk.nashorn.internal.parser.JSONParser.quote;
 
 public class MyAppProperties {
     public static String  getBaseUrl()
@@ -15,7 +17,7 @@ public class MyAppProperties {
     }
     public static String getPwd()
     {
-        String pwd = quote("admin");
+        String pwd = quote("admin@123");
         return pwd;
     }
 }
