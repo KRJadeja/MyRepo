@@ -9,8 +9,8 @@ import java.net.MalformedURLException;
 import java.rmi.server.UID;
 
 public class Common_Actions {
-    String uid="admin";//System.getenv("USID");
-    String pwd="admin";//System.getenv("PWD");
+    String id="admin";//System.getenv("USID");
+    String paswd="admin";//System.getenv("PWD");
     private WebDriver driver;
 
     Common_Elements common_elements;
@@ -40,8 +40,9 @@ public class Common_Actions {
     public void gotoBaseUrl() throws InterruptedException {
         /*String str = "https://"+ MyAppProperties.getUserId()+":"+MyAppProperties.getPwd()+"@the-internet.herokuapp.com/basic_auth";
         driver.get(str);*/
-       String cred = uid+":"+pwd;
+        String cred = id + ":" + paswd;
         String str = "https://" + cred +"@the-internet.herokuapp.com/basic_auth";
+        System.out.println(str);
         driver.get(str);
         Thread.sleep(1000);
         driver.navigate().to("https://www.facebook.com/");
