@@ -9,8 +9,8 @@ import java.net.MalformedURLException;
 import java.rmi.server.UID;
 
 public class Common_Actions {
-    String uid=System.getenv("USID");
-    String pwd=System.getenv("PWD");
+    String uid="admin";//System.getenv("USID");
+    String pwd="admin";//System.getenv("PWD");
     private WebDriver driver;
 
     Common_Elements common_elements;
