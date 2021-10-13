@@ -41,7 +41,7 @@ public class Common_Actions {
         /*String str = "https://"+ MyAppProperties.getUserId()+":"+MyAppProperties.getPwd()+"@the-internet.herokuapp.com/basic_auth";
         driver.get(str);*/
         String cred = id + ":" + paswd;
-        String str = "https://" + cred +"@the-internet.herokuapp.com/basic_auth";
+        String str = "https://admin:admin@the-internet.herokuapp.com/basic_auth";
         System.out.println(str);
         driver.get(str);
         Thread.sleep(1000);
