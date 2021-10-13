@@ -40,7 +40,8 @@ public class Common_Actions {
     public void gotoBaseUrl() throws InterruptedException {
         /*String str = "https://"+ MyAppProperties.getUserId()+":"+MyAppProperties.getPwd()+"@the-internet.herokuapp.com/basic_auth";
         driver.get(str);*/
-        String str = "https://" + uid + ":" + pwd +"@the-internet.herokuapp.com/basic_auth";
+       String cred = uid+":"+pwd;
+        String str = "https://" + cred +"@the-internet.herokuapp.com/basic_auth";
         driver.get(str);
         Thread.sleep(1000);
         driver.navigate().to("https://www.facebook.com/");
