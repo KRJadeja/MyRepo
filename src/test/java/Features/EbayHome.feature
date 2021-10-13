@@ -1,11 +1,11 @@
 Feature: Ebay Home Page Scenarios
-Background: Facebook login page
-  Given I am on Facebook Login page
-  When I enter valid credential in given textbox and click login button
-  Then It should redirect me to page
+#Background: Facebook login page
+#  Given I am on Facebook Login page
+#  When I enter valid credential in given textbox and click login button
+#  Then It should redirect me to page
 
  # @P1 @P2
-  @H1
+ # @H1
   Scenario: Advanced Search Link
     Given I am on Eaby Home Page
     When I click on Advanced Link
@@ -25,7 +25,7 @@ Background: Facebook login page
 #      | FViewer | P@ssw@rd  |
 
   #@P1 @setCookies @Test
-  @H1
+ # @H1
   Scenario: Seach items count
     Given I am on Eaby Home Page
     When I serach for 'iPhone 11'
