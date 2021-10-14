@@ -10,7 +10,6 @@ import java.util.Properties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,7 +18,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import com.saucelabs.saucerest.SauceREST;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
-import org.testng.ITestResult;
 //import org.openqa.selenium.remote.SessionId;
 //import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
 
@@ -76,9 +74,8 @@ import java.net.URL;
         return driver.get();
     }
     @After
-    public void tierDown(ITestResult result)
+    public void tierDown()
     {
-        ((JavascriptExecutor) driver.get()).executeScript("sauce:job-result="+(result.isSuccess()?"passed":"failed"));
         driver.get().quit();
     }
 
