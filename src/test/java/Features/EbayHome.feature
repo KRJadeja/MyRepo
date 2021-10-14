@@ -25,7 +25,7 @@ Feature: Ebay Home Page Scenarios
 #      | FViewer | P@ssw@rd  |
 
   #@P1 @setCookies @Test
- # @H1
+ @H1
   Scenario: Seach items count
     Given I am on Eaby Home Page
     When I serach for 'iPhone 11'
