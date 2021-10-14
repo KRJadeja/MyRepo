@@ -9,7 +9,10 @@ import java.io.*;
 import java.util.Properties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Rule;
+import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,8 +20,10 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.JavascriptExecutor;
 
 import com.saucelabs.saucerest.SauceREST;
+import com.saucelabs.saucerest.DataCenter;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
+import org.openqa.selenium.remote.SessionId;
 //import org.openqa.selenium.remote.SessionId;
 //import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
 
@@ -41,6 +46,7 @@ import java.net.URL;
     //Scenario scenario;
     public String jobName;
     String id;
+    private SauceREST sauceClient;
 
     @Before(order = 0)
     public void getScenarioName(Scenario scenario) {
@@ -68,6 +74,7 @@ import java.net.URL;
         //id = ((RemoteWebDriver) getDriver()).getSessionId().toString();
         sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
         //System.out.println("Session ID : "+getSessionId());
+        //sauceClient = new SauceREST(USERNAME,ACCESS_KEY,DataCenter.US);
 
     }
     public WebDriver getDriver()
@@ -85,8 +92,7 @@ import java.net.URL;
         return sessionId.get();
     }
     @Rule
-    public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this,authentication);
-
+    public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this::getSessionId, authentication);
     public SauceOnDemandAuthentication getAuthentication() {
         return authentication;
     }
