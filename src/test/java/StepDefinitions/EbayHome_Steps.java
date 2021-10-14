@@ -55,7 +55,7 @@ public class EbayHome_Steps {
 	public void i_validate_atleast_search_items_presentint (int count) {
 	    int itemCountInt = ebayhome_actions.getSeatchItemsCount();
 	    Assert.assertEquals(count,itemCountInt);
-		testresult=true;
+		testresult=false;
 	    /*if(itemCountInt <= count) {
 	    	fail("Less than 1000 results shown");
 
