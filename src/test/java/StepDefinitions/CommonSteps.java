@@ -58,7 +58,7 @@ import java.net.URL;
         ChromeOptions options = new ChromeOptions();
         options.setCapability("version", "latest");
         options.setCapability("platform","Windows 10");
-        options.setCapability("screenResolution","600x800");
+        options.setCapability("screenResolution","800x600");
         options.setCapability("name",jobName);
         options.setCapability("build",BUILD);
 
