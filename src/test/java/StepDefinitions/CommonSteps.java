@@ -54,7 +54,7 @@ import java.net.URL;
     @Before(order = 0)
     public void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
-        testResults = false;
+        testResults = true;
     }
     /*@Before
     public void setUp(){
