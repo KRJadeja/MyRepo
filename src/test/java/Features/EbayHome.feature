@@ -29,7 +29,7 @@ Feature: Ebay Home Page Scenarios
   Scenario: Seach items count
     Given I am on Eaby Home Page
     When I serach for 'iPhone 11'
-    Then I validate atleast 1000 search items present
+    Then I validate atleast 10000 search items present
 
   @P24 @setCookies
   Scenario: Seach items count2

@@ -14,7 +14,7 @@ public class EbayHome_Steps {
 	Common_Actions common_actions;
 	EbayHome_Actions ebayhome_actions;
 
-	public static boolean testresult;
+	public static boolean testresult=false;
 	
 	public EbayHome_Steps(Common_Actions common_actions, EbayHome_Actions ebayhome_actions) {
 		this.common_actions = common_actions;
@@ -54,9 +54,12 @@ public class EbayHome_Steps {
 	@Then("I validate atleast {int} search items present")
 	public void i_validate_atleast_search_items_presentint (int count) {
 	    int itemCountInt = ebayhome_actions.getSeatchItemsCount();
-	    if(itemCountInt <= count) {
+	    Assert.assertEquals(count,itemCountInt);
+		testresult=true;
+	    /*if(itemCountInt <= count) {
 	    	fail("Less than 1000 results shown");
-	    }
+
+	    }*/
 	}
 	
 	@When("I serach for {string} in {string} category")
