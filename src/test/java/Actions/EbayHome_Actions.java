@@ -1,6 +1,7 @@
 package Actions;
 
 import Elements.EbayHome_Elements;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -60,6 +61,7 @@ public class EbayHome_Actions {
 
 	public void showwelcomemsg() {
 		String actmsg = ebayhome_elements.msg.getText();
+		Assert.assertEquals("Welcome",actmsg);
 		System.out.println(actmsg);
 	}
 }
