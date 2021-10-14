@@ -6,6 +6,8 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Rule;
@@ -45,12 +47,14 @@ import java.net.URL;
     //private WebDriver driver;
     //Scenario scenario;
     public String jobName;
+    public boolean testResults;
     String id;
     private SauceREST sauceClient;
 
     @Before(order = 0)
     public void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
+        testResults = false;
     }
     /*@Before
     public void setUp(){
@@ -84,6 +88,7 @@ import java.net.URL;
     @After
     public void tierDown()
     {
+        UpdateResults(testResults);
         driver.get().quit();
     }
 
@@ -95,5 +100,13 @@ import java.net.URL;
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this::getSessionId, authentication);
     public SauceOnDemandAuthentication getAuthentication() {
         return authentication;
+    }
+
+    public void UpdateResults(boolean testResults)
+    {
+        SauceREST saucerest = new SauceREST(USERNAME,ACCESS_KEY);
+        Map<String,Object> updates = new HashMap<String,Object>();
+        updates.put("passed",testResults);
+        saucerest.updateJobInfo(getSessionId(),updates);
     }
 }
