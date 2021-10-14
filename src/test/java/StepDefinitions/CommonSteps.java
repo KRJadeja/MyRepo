@@ -54,7 +54,7 @@ import java.net.URL;
     @Before(order = 0)
     public void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
-        testResults = true;
+        testResults = false;
     }
     /*@Before
     public void setUp(){
@@ -106,7 +106,7 @@ import java.net.URL;
     {
         SauceREST saucerest = new SauceREST(USERNAME,ACCESS_KEY);
         Map<String,Object> updates = new HashMap<String,Object>();
-        updates.put("passed",testResults);
+        updates.put("passed",EbayHome_Steps.testresult);
         saucerest.updateJobInfo(getSessionId(),updates);
     }
 }

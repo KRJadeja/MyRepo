@@ -13,6 +13,8 @@ import static org.junit.Assert.*;
 public class EbayHome_Steps {
 	Common_Actions common_actions;
 	EbayHome_Actions ebayhome_actions;
+
+	public static boolean testresult;
 	
 	public EbayHome_Steps(Common_Actions common_actions, EbayHome_Actions ebayhome_actions) {
 		this.common_actions = common_actions;
@@ -36,6 +38,7 @@ public class EbayHome_Steps {
 	    String expUrl = "https://www.ebay.com/sch/ebayadvsearch";
 	    String actUrl = common_actions.getCurrentPageUrl();
 		Assert.assertEquals(expUrl,actUrl);
+		testresult = true;
 	    /*if (!expUrl.equals(actUrl)) {
 	    	fail("Page does not navigae to expected page");
 	    }*/
