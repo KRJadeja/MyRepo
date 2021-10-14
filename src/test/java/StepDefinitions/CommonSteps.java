@@ -84,10 +84,10 @@ import java.net.URL;
     public String getSessionId() {
         return sessionId.get();
     }
-   /* @Rule
+    @Rule
     public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this,authentication);
 
     public SauceOnDemandAuthentication getAuthentication() {
         return authentication;
-    }*/
+    }
 }

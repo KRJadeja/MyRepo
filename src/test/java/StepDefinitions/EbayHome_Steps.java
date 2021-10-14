@@ -5,9 +5,10 @@ import Actions.EbayHome_Actions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import util.MyAppProperties;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class EbayHome_Steps {
 	Common_Actions common_actions;
@@ -34,9 +35,10 @@ public class EbayHome_Steps {
 	public void i_navigate_to_Advanced_Search_page() {
 	    String expUrl = "https://www.ebay.com/sch/ebayadvsearch";
 	    String actUrl = common_actions.getCurrentPageUrl();
-	    if (!expUrl.equals(actUrl)) {
+		Assert.assertEquals(expUrl,actUrl);
+	    /*if (!expUrl.equals(actUrl)) {
 	    	fail("Page does not navigae to expected page");
-	    }
+	    }*/
 	}
 	
 	@When("I serach for {string}")
@@ -103,8 +105,10 @@ public class EbayHome_Steps {
 	}
 
 	@Given("I launch herokuapp with basic auth")
-	public void iLaunchHerokuappWithBasicAuth() {
-		common_actions.goToUrl("https://"+MyAppProperties.getUserId()+":"+MyAppProperties.getPwd()+"@the-internet.herokuapp.com/basic_auth");
+	public void iLaunchHerokuappWithBasicAuth() throws InterruptedException {
+		//String str = "https://"+MyAppProperties.getUserId()+":"+MyAppProperties.getPwd()+"@the-internet.herokuapp.com/basic_auth";
+		//System.out.println("URL  "+str);
+		common_actions.gotoBaseUrl();
 	}
 
 	@Then("I navigate to Welcome page")
