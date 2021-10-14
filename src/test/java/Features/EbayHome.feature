@@ -5,13 +5,13 @@ Feature: Ebay Home Page Scenarios
 #  Then It should redirect me to page
 
  # @P1 @P2
- # @H1
+ @H1
   Scenario: Advanced Search Link
     Given I am on Eaby Home Page
     When I click on Advanced Link
     Then I navigate to Advanced Search page
 
-    @H1
+  #  @H1
     Scenario: Login with basic auth
       Given I launch herokuapp with basic auth
       Then I navigate to Welcome page
