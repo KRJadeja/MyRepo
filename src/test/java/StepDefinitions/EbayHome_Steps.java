@@ -5,6 +5,7 @@ import Actions.EbayHome_Actions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import junit.framework.AssertionFailedError;
 import org.junit.Assert;
 import util.MyAppProperties;
 
@@ -13,6 +14,7 @@ import static org.junit.Assert.*;
 public class EbayHome_Steps {
 	Common_Actions common_actions;
 	EbayHome_Actions ebayhome_actions;
+	CommonSteps commonSteps;
 
 	public static boolean testresult;
 	
@@ -39,6 +41,7 @@ public class EbayHome_Steps {
 	    String actUrl = common_actions.getCurrentPageUrl();
 		Assert.assertEquals(expUrl,actUrl);
 		testresult = true;
+		commonSteps.UpdateResults(testresult);
 	    /*if (!expUrl.equals(actUrl)) {
 	    	fail("Page does not navigae to expected page");
 	    }*/
@@ -53,9 +56,17 @@ public class EbayHome_Steps {
 
 	@Then("I validate atleast {int} search items present")
 	public void i_validate_atleast_search_items_presentint (int count) {
-	    int itemCountInt = ebayhome_actions.getSeatchItemsCount();
-	    Assert.assertEquals(count,itemCountInt);
-		testresult=false;
+		try {
+
+			int itemCountInt = ebayhome_actions.getSeatchItemsCount();
+			Assert.assertEquals(count, itemCountInt);
+			testresult = true;
+		}
+		catch (AssertionFailedError afe){
+			testresult=false;
+		}
+
+	    /*if (!expUrl.equals(actUrl)) {
 	    /*if(itemCountInt <= count) {
 	    	fail("Less than 1000 results shown");
 
