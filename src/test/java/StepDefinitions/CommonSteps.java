@@ -88,6 +88,9 @@ import java.net.URL;
     @After
     public void tierDown()
     {
+        String cls = getClass().getName();
+        System.out.println(cls);
+
         UpdateResults(EbayHome_Steps.testresult);
         driver.get().quit();
     }
@@ -96,8 +99,8 @@ import java.net.URL;
     public String getSessionId() {
         return sessionId.get();
     }
-    @Rule
-    public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this::getSessionId, authentication);
+    //@Rule
+    //public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this::getSessionId, authentication);
     public SauceOnDemandAuthentication getAuthentication() {
         return authentication;
     }

@@ -14,7 +14,7 @@ public class EbayHome_Steps {
 	Common_Actions common_actions;
 	EbayHome_Actions ebayhome_actions;
 
-	public static boolean testresult=false;
+	public static boolean testresult;
 	
 	public EbayHome_Steps(Common_Actions common_actions, EbayHome_Actions ebayhome_actions) {
 		this.common_actions = common_actions;
