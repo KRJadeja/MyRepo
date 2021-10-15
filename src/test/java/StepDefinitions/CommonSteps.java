@@ -47,14 +47,14 @@ import java.net.URL;
     //private WebDriver driver;
     //Scenario scenario;
     public String jobName;
-    public boolean testResults;
+   // public boolean testResults;
     String id;
     private SauceREST sauceClient;
 
     @Before(order = 0)
     public void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
-        testResults = false;
+        //testResults = false;
     }
     /*@Before
     public void setUp(){
@@ -88,7 +88,7 @@ import java.net.URL;
     @After
     public void tierDown()
     {
-        UpdateResults(testResults);
+        UpdateResults(EbayHome_Steps.testresult);
         driver.get().quit();
     }
 
@@ -106,7 +106,7 @@ import java.net.URL;
     {
         SauceREST saucerest = new SauceREST(USERNAME,ACCESS_KEY);
         Map<String,Object> updates = new HashMap<String,Object>();
-        updates.put("passed",EbayHome_Steps.testresult);
+        updates.put("passed",testResults);
         saucerest.updateJobInfo(getSessionId(),updates);
     }
 }
