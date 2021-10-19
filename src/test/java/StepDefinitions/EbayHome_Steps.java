@@ -61,15 +61,15 @@ public class EbayHome_Steps {
 	@Then("I validate atleast {int} search items present")
 	public void i_validate_atleast_search_items_presentint (int count) {
 			int itemCountInt = ebayhome_actions.getSeatchItemsCount();
-			Assert.assertEquals(count, itemCountInt);
-			CommonSteps.testResults=true;
+			//Assert.assertEquals(count, itemCountInt);
 
-
-	    /*if (!expUrl.equals(actUrl)) {
-	    /*if(itemCountInt <= count) {
-	    	fail("Less than 1000 results shown");
-
-	    }*/
+			if(itemCountInt < count) {
+				fail("Less than 1000 results shown");
+			}
+			else
+			{
+				CommonSteps.testResults=true;
+			}
 	}
 	
 	@When("I serach for {string} in {string} category")
