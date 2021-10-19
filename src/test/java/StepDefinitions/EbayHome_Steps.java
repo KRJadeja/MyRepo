@@ -86,12 +86,12 @@ public class EbayHome_Steps {
 	   Thread.sleep(1000);
 	}
 
-	@Then("I validate that page navigates to {string} and title contains {string}")
-	public void i_validate_that_page_navigates_to_and_title_contains(String url, String title) {
+	@Then("I validate that page navigates to {string}")
+	public void i_validate_that_page_navigates_to_and_title_contains(String url) {
 	    String actUrl = common_actions.getCurrentPageUrl();
-	    String actTitle = common_actions.getCurrentPageTitle();
+	   // String actTitle = common_actions.getCurrentPageTitle();
 	    Assert.assertEquals(url,actUrl);
-		Assert.assertEquals(title,actTitle);
+		//Assert.assertEquals(title,actTitle);
 	   /* if (!actUrl.equals(url)) {
 	    	fail("Page does navigate to expected url: " + url);
 	    }

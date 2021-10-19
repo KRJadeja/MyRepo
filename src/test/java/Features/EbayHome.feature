@@ -46,14 +46,25 @@ Feature: Ebay Home Page Scenarios
     Then I validate atleast 50 search items present
 
 	#@P500
+#  @H1
+#  Scenario Outline: Home page links
+#    Given I am on Eaby Home Page
+#    When I click on '<link>'
+#    Then I validate that page navigates to '<url>' and title contains '<title>'
+#
+#    Examples:
+#      | link    | url                                                            | title       |
+#      | Motors  | https://www.ebay.com/b/Auto-Parts-and-Vehicles/6000/bn_1865334 | eBay Motors |
+#      | Fashion | https://www.ebay.com/b/Fashion/bn_7000259856                   | Fashion     |
+#      | Toys    | https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497             | Toys        |
+
   @H1
   Scenario Outline: Home page links
     Given I am on Eaby Home Page
     When I click on '<link>'
-    Then I validate that page navigates to '<url>' and title contains '<title>'
-
-    Examples: 
-      | link    | url                                                            | title       |
-      | Motors  | https://www.ebay.com/b/Auto-Parts-and-Vehicles/6000/bn_1865334 | eBay Motors |
-      | Fashion | https://www.ebay.com/b/Fashion/bn_7000259856                   | Fashion     |
-      | Toys    | https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497             | Toys        |
+    Then I validate that page navigates to '<url>'
+    Examples:
+      | link    | url                                                            |
+      | Motors  | https://www.ebay.com/b/Auto-Parts-and-Vehicles/6000/bn_1865334 |
+      | Fashion | https://www.ebay.com/b/Fashion/bn_7000259856                   |
+      | Toys    | https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497             |
