@@ -59,9 +59,7 @@ public class EbayHome_Actions {
 		ebayhome_elements.loginbtn.click();
 	}
 
-	public void showwelcomemsg() {
-		String actmsg = ebayhome_elements.msg.getText();
-		Assert.assertEquals("Welcome",actmsg);
-		System.out.println(actmsg);
+	public String showwelcomemsg() {
+		return ebayhome_elements.msg.getText();
 	}
 }

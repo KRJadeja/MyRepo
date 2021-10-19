@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
@@ -47,14 +48,15 @@ import java.net.URL;
     //private WebDriver driver;
     //Scenario scenario;
     public String jobName;
-   // public boolean testResults;
+    public static boolean testResults;
     String id;
     private SauceREST sauceClient;
+    private String jobInfo;
 
     @Before(order = 0)
     public void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
-        //testResults = false;
+        testResults = false;
     }
     /*@Before
     public void setUp(){
@@ -68,7 +70,7 @@ import java.net.URL;
         ChromeOptions options = new ChromeOptions();
         options.setCapability("version", "latest");
         options.setCapability("platform","Windows 10");
-        options.setCapability("screenResolution","1152x864");
+        options.setCapability("screenResolution","1440x900");
         options.setCapability("name",jobName);
         options.setCapability("build",BUILD);
 
@@ -85,13 +87,12 @@ import java.net.URL;
     {
         return driver.get();
     }
-    @After
+    @After()
     public void tierDown()
     {
-        String cls = getClass().getName();
-        System.out.println(cls);
-
-        UpdateResults(EbayHome_Steps.testresult);
+        //testResults =true;
+        UpdateResults(testResults);
+       // UpdateResults();
         driver.get().quit();
     }
 
@@ -99,17 +100,26 @@ import java.net.URL;
     public String getSessionId() {
         return sessionId.get();
     }
-    //@Rule
-    //public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this::getSessionId, authentication);
+    public @Rule
+    SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this::getSessionId, getAuthentication());
     public SauceOnDemandAuthentication getAuthentication() {
         return authentication;
     }
-
+    /*@Rule public TestName name = new TestName(){
+        @Override
+        public String getMethodName() {
+            return super.getMethodName();
+        }
+    };*/
     public void UpdateResults(boolean testResults)
     {
         SauceREST saucerest = new SauceREST(USERNAME,ACCESS_KEY);
         Map<String,Object> updates = new HashMap<String,Object>();
-        updates.put("passed",testResults);
+        //saucerest.jobPassed(sessionId.get());
+       // saucerest.jobFailed(sessionId.get());
+        //jobInfo = saucerest.getJobInfo(sessionId.get());
+        //System.out.println("Info "+  updates.get("passed"));
+        updates.put("passed", testResults);
         saucerest.updateJobInfo(getSessionId(),updates);
     }
 }

@@ -2,21 +2,26 @@ package StepDefinitions;
 
 import Actions.Common_Actions;
 import Actions.EbayHome_Actions;
+import com.saucelabs.saucerest.SauceREST;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import junit.framework.AssertionFailedError;
 import org.junit.Assert;
+import org.openqa.selenium.remote.SessionId;
 import util.MyAppProperties;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
 public class EbayHome_Steps {
 	Common_Actions common_actions;
 	EbayHome_Actions ebayhome_actions;
-	CommonSteps commonSteps;
+	//CommonSteps commonSteps;
 
-	public static boolean testresult;
 	
 	public EbayHome_Steps(Common_Actions common_actions, EbayHome_Actions ebayhome_actions) {
 		this.common_actions = common_actions;
@@ -40,8 +45,7 @@ public class EbayHome_Steps {
 	    String expUrl = "https://www.ebay.com/sch/ebayadvsearch";
 	    String actUrl = common_actions.getCurrentPageUrl();
 		Assert.assertEquals(expUrl,actUrl);
-		testresult = true;
-		commonSteps.UpdateResults(testresult);
+		CommonSteps.testResults =true;
 	    /*if (!expUrl.equals(actUrl)) {
 	    	fail("Page does not navigae to expected page");
 	    }*/
@@ -56,15 +60,9 @@ public class EbayHome_Steps {
 
 	@Then("I validate atleast {int} search items present")
 	public void i_validate_atleast_search_items_presentint (int count) {
-		try {
-
 			int itemCountInt = ebayhome_actions.getSeatchItemsCount();
 			Assert.assertEquals(count, itemCountInt);
-			testresult = true;
-		}
-		catch (AssertionFailedError afe){
-			testresult=false;
-		}
+
 
 	    /*if (!expUrl.equals(actUrl)) {
 	    /*if(itemCountInt <= count) {
@@ -130,6 +128,8 @@ public class EbayHome_Steps {
 
 	@Then("I navigate to Welcome page")
 	public void iNavigateToWelcomePage() {
-		ebayhome_actions.showwelcomemsg();
+		String actmsg = ebayhome_actions.showwelcomemsg();
+		Assert.assertEquals("Welcome",actmsg);
+		CommonSteps.testResults=true;
 	}
 }
