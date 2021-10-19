@@ -91,6 +91,7 @@ public class EbayHome_Steps {
 	    String actUrl = common_actions.getCurrentPageUrl();
 	   // String actTitle = common_actions.getCurrentPageTitle();
 	    Assert.assertEquals(url,actUrl);
+	    CommonSteps.testResults=true;
 		//Assert.assertEquals(title,actTitle);
 	   /* if (!actUrl.equals(url)) {
 	    	fail("Page does navigate to expected url: " + url);
