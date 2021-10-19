@@ -62,6 +62,7 @@ public class EbayHome_Steps {
 	public void i_validate_atleast_search_items_presentint (int count) {
 			int itemCountInt = ebayhome_actions.getSeatchItemsCount();
 			Assert.assertEquals(count, itemCountInt);
+			CommonSteps.testResults=true;
 
 
 	    /*if (!expUrl.equals(actUrl)) {
@@ -89,29 +90,14 @@ public class EbayHome_Steps {
 	public void i_validate_that_page_navigates_to_and_title_contains(String url, String title) {
 	    String actUrl = common_actions.getCurrentPageUrl();
 	    String actTitle = common_actions.getCurrentPageTitle();
-	    if (!actUrl.equals(url)) {
+	    Assert.assertEquals(url,actUrl);
+		Assert.assertEquals(title,actTitle);
+	   /* if (!actUrl.equals(url)) {
 	    	fail("Page does navigate to expected url: " + url);
 	    }
 	    if (!actTitle.contains(title)) {
 	    	fail("Title mismatch");
-	    }
-	}
-
-	@Given("I am on Facebook Login page")
-	public void iAmOnFacebookLoginPage() {
-		common_actions.goToUrl("https://www.facebook.com/");
-	}
-
-	@When("I enter {string} and {string} in given textbox and click login button")
-	public void enter_useridnpwwd(String uid, String pwd) {
-		ebayhome_actions.enterUidPwd(uid,pwd);
-	}
-
-	@Then("It should redirect me to page")
-	public void itShouldRedirectMeToPage() {
-		String acturl = common_actions.getCurrentPageUrl();
-		System.out.println("Page Redircted to : "+ acturl);
-
+	    }*/
 	}
 
 	@When("I enter valid credential in given textbox and click login button")
@@ -131,5 +117,23 @@ public class EbayHome_Steps {
 		String actmsg = ebayhome_actions.showwelcomemsg();
 		Assert.assertEquals("Welcome",actmsg);
 		CommonSteps.testResults=true;
+	}
+
+	// For Facebook Login
+	@Given("I am on Facebook Login page")
+	public void iAmOnFacebookLoginPage() {
+		common_actions.goToUrl("https://www.facebook.com/");
+	}
+
+	@When("I enter {string} and {string} in given textbox and click login button")
+	public void enter_useridnpwwd(String uid, String pwd) {
+		ebayhome_actions.enterUidPwd(uid,pwd);
+	}
+
+	@Then("It should redirect me to page")
+	public void itShouldRedirectMeToPage() {
+		String acturl = common_actions.getCurrentPageUrl();
+		System.out.println("Page Redircted to : "+ acturl);
+
 	}
 }
