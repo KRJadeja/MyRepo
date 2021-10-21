@@ -166,7 +166,7 @@
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                     <systemPropertyVariables>
-                        <environment>e1</environment>
+                        <environment>e2</environment>
                         <runOnSauce>yes</runOnSauce>
                         <!--<myname>Kiran</myname>-->
                     </systemPropertyVariables>
