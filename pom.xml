@@ -165,10 +165,11 @@
                         <include>**/TestRunner.java</include>
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
-                    <!--<systemPropertyVariables>
-                        <environment>e0</environment>
-                        <myname>Kiran</myname>
-                    </systemPropertyVariables>-->
+                    <systemPropertyVariables>
+                        <environment>e1</environment>
+                        <runOnSauce>yes</runOnSauce>
+                        <!--<myname>Kiran</myname>-->
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
 

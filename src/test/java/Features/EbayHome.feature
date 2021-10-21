@@ -19,7 +19,7 @@ Feature: Ebay Home Page Scenarios
     When I click on Advanced Link
     Then I navigate to Advanced Search page
 
-  @H1
+  @H1 @smoke
     Scenario: Login with basic auth
       Given I launch herokuapp with basic auth
       Then I navigate to Welcome page
@@ -46,7 +46,7 @@ Feature: Ebay Home Page Scenarios
     Then I validate atleast 50 search items present
 
 	#@P500
-#  @H1
+ # @H1
 #  Scenario Outline: Home page links
 #    Given I am on Eaby Home Page
 #    When I click on '<link>'
@@ -54,9 +54,9 @@ Feature: Ebay Home Page Scenarios
 #
 #    Examples:
 #      | link    | url                                                            | title       |
-#      | Motors  | https://www.ebay.com/b/Auto-Parts-and-Vehicles/6000/bn_1865334 | eBay Motors |
-#      | Fashion | https://www.ebay.com/b/Fashion/bn_7000259856                   | Fashion     |
-#      | Toys    | https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497             | Toys        |
+#      | Motors  | https://www.ebay.com/b/Auto-Parts-and-Vehicles/6000/bn_1865334 | eBay Motors: Auto Parts and Vehicles |
+#      | Fashion | https://www.ebay.com/b/Fashion/bn_7000259856                   | Fashion products for sale |
+#      | Toys    | https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497             | Toys & Hobbies products for sale |
 
   @H1
   Scenario Outline: Home page links
