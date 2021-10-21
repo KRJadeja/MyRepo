@@ -15,7 +15,7 @@ import org.junit.rules.TestName;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -43,35 +43,41 @@ import java.net.URL;
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME,ACCESS_KEY);
     public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.saucelabs.com:443/wd/hub";
     public final String BUILD = System.getenv("JENKINS_BUILD_NUMBER");
+
+
     private ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
     private ThreadLocal<String> sessionId = new ThreadLocal<String>();
     //private WebDriver driver;
     //Scenario scenario;
     public String jobName;
     public static boolean testResults;
-    String id;
-    private SauceREST sauceClient;
-    private String jobInfo;
+    //String id;
+    //private SauceREST sauceClient;
+    //private String jobInfo;
 
     @Before(order = 0)
     public void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
         testResults = false;
     }
-    /*@Before
-    public void setUp(){
-        System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
-        driver.set(new ChromeDriver());
-        driver.get().manage().window().maximize();
+   /* @Before
+    public void setUp() throws MalformedURLException {
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+            driver.set(new ChromeDriver());
+            driver.get().manage().window().maximize();
+
     }*/
     @Before
     public void setUp() throws MalformedURLException {
+        boolean st=System.getProperty("runOnSauce").equalsIgnoreCase("yes");
+
+    if(st) {
         //To Run on Saucelabs
         ChromeOptions options = new ChromeOptions();
         options.setCapability("version", "latest");
-        options.setCapability("platform","Windows 10");
-        options.setCapability("screenResolution","1440x900");
-        options.setCapability("name",jobName);
+        options.setCapability("platform", "Windows 10");
+        //options.setCapability("screenResolution","1440x900");
+        options.setCapability("name", jobName);
         options.setCapability("build",BUILD);
 
         //driver = new RemoteWebDriver(new URL(URL), options);
@@ -81,6 +87,12 @@ import java.net.URL;
         sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
         //System.out.println("Session ID : "+getSessionId());
         //sauceClient = new SauceREST(USERNAME,ACCESS_KEY,DataCenter.US);
+    }
+    else {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        driver.set(new ChromeDriver());
+        driver.get().manage().window().maximize();
+    }
 
     }
     public WebDriver getDriver()
@@ -90,9 +102,7 @@ import java.net.URL;
     @After()
     public void tierDown()
     {
-        //testResults =true;
-        UpdateResults(testResults);
-       // UpdateResults();
+       UpdateResults(testResults);
         driver.get().quit();
     }
 
@@ -100,25 +110,23 @@ import java.net.URL;
     public String getSessionId() {
         return sessionId.get();
     }
-    public @Rule
-    SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this::getSessionId, getAuthentication());
+
+   /* @Rule
+    public SauceOnDemandTestWatcher resultReportingTestWatcher = new SauceOnDemandTestWatcher(this::getSessionId, getAuthentication());
     public SauceOnDemandAuthentication getAuthentication() {
         return authentication;
     }
-    /*@Rule public TestName name = new TestName(){
+    @Rule public TestName name = new TestName(){
         @Override
         public String getMethodName() {
             return super.getMethodName();
         }
     };*/
+
     public void UpdateResults(boolean testResults)
     {
         SauceREST saucerest = new SauceREST(USERNAME,ACCESS_KEY);
         Map<String,Object> updates = new HashMap<String,Object>();
-        //saucerest.jobPassed(sessionId.get());
-       // saucerest.jobFailed(sessionId.get());
-        //jobInfo = saucerest.getJobInfo(sessionId.get());
-        //System.out.println("Info "+  updates.get("passed"));
         updates.put("passed", testResults);
         saucerest.updateJobInfo(getSessionId(),updates);
     }

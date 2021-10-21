@@ -3,22 +3,22 @@ package Actions;
 import Elements.Common_Elements;
 import StepDefinitions.CommonSteps;
 import org.openqa.selenium.WebDriver;
-import util.MyAppProperties;
-
+import Util.ConfigFileReader;
 import java.net.MalformedURLException;
-import java.rmi.server.UID;
+
 
 public class Common_Actions {
-    String id="admin";//System.getenv("USID");
-    String paswd="admin";//System.getenv("PWD");
+
     private WebDriver driver;
 
     Common_Elements common_elements;
+    ConfigFileReader configFileReader = new ConfigFileReader();
+
+    String env = System.getProperty("environment");
 
     public Common_Actions(CommonSteps commonsteps) throws MalformedURLException {
         this.driver = commonsteps.getDriver();
         common_elements = new Common_Elements(driver);
-
     }
 
     public void goToUrl(String url) {
@@ -38,17 +38,19 @@ public class Common_Actions {
     }
 
     public void gotoBaseUrl() throws InterruptedException {
-        /*String str = "https://"+ MyAppProperties.getUserId()+":"+MyAppProperties.getPwd()+"@the-internet.herokuapp.com/basic_auth";
-        driver.get(str);*/
-        String cred = id + ":" + paswd;
-        String str = "https://admin:admin@the-internet.herokuapp.com/basic_auth";
-        System.out.println(str);
-        driver.get(str);
+
+        String ssourl = configFileReader.getApplicationUrl();
+        //System.out.println(ssourl+"======"+configFileReader.getViewerPassword());
+        driver.get(ssourl);
         Thread.sleep(1000);
-        driver.navigate().to("https://www.facebook.com/");
-        common_elements.loginId.sendKeys("abc");
-        common_elements.loginpwd.sendKeys("abc@123");
-        common_elements.loginbtn.click();
-        //System.out.println("uid  "+uid);
+
+        System.out.println("Environment==="+ env);
+        if(env.equals("e1")) {
+            driver.navigate().to("https://www.facebook.com/");
+            common_elements.loginId.sendKeys(configFileReader.getViewerUserName());
+            common_elements.loginpwd.sendKeys(configFileReader.getViewerPassword());
+            common_elements.loginbtn.click();
+        }
+
     }
 }

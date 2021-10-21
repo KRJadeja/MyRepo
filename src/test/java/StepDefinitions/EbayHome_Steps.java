@@ -2,27 +2,20 @@ package StepDefinitions;
 
 import Actions.Common_Actions;
 import Actions.EbayHome_Actions;
-import com.saucelabs.saucerest.SauceREST;
-import io.cucumber.java.AfterStep;
+import Util.ConfigFileReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import junit.framework.AssertionFailedError;
 import org.junit.Assert;
-import org.openqa.selenium.remote.SessionId;
-import util.MyAppProperties;
-
-import java.util.HashMap;
-import java.util.Map;
+//import Util.MyAppProperties;
 
 import static org.junit.Assert.*;
 
 public class EbayHome_Steps {
 	Common_Actions common_actions;
 	EbayHome_Actions ebayhome_actions;
-	//CommonSteps commonSteps;
+	ConfigFileReader configFileReader = new ConfigFileReader();
 
-	
 	public EbayHome_Steps(Common_Actions common_actions, EbayHome_Actions ebayhome_actions) {
 		this.common_actions = common_actions;
 		this.ebayhome_actions = ebayhome_actions;
@@ -30,8 +23,8 @@ public class EbayHome_Steps {
 	
 	@Given("I am on Eaby Home Page")
 	public void i_am_on_Eaby_Home_Page() {
-	  // common_actions.goToUrl("https://www.ebay.com/");
-		common_actions.navigaetUrl(MyAppProperties.getBaseUrl());
+		common_actions.goToUrl("https://www.ebay.com/");
+		//common_actions.navigaetUrl(configFileReader.getApplicationUrl());
 
 	}
 
@@ -103,7 +96,7 @@ public class EbayHome_Steps {
 
 	@When("I enter valid credential in given textbox and click login button")
 	public void iEnterValidCredentialInGivenTextboxAndClickLoginButton() {
-		ebayhome_actions.enterUidPwd(MyAppProperties.getUserId(),MyAppProperties.getPwd());
+		ebayhome_actions.enterUidPwd(configFileReader.getViewerUserName(),configFileReader.getViewerPassword());
 	}
 
 	@Given("I launch herokuapp with basic auth")
