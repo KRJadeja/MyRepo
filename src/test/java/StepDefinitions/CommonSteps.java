@@ -41,7 +41,8 @@ import java.net.URL;
     public String USERNAME = System.getenv("SAUCE_USERNAME");
     public String ACCESS_KEY =System.getenv("SAUCE_ACCESS_KEY");
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME,ACCESS_KEY);
-    public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.saucelabs.com:443/wd/hub";
+    //public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.saucelabs.com:443/wd/hub";
+    public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.us-west-1.saucelabs.com:443/wd/hub";
     public final String BUILD = System.getenv("JENKINS_BUILD_NUMBER");
 
 
@@ -85,6 +86,9 @@ import java.net.URL;
 
         //id = ((RemoteWebDriver) getDriver()).getSessionId().toString();
         sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
+
+        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",sessionId.get(),jobName);
+        System.out.println(message);
         //System.out.println("Session ID : "+getSessionId());
         //sauceClient = new SauceREST(USERNAME,ACCESS_KEY,DataCenter.US);
     }
