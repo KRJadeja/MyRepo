@@ -45,6 +45,8 @@ import java.net.URL;
     public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.us-west-1.saucelabs.com:443/wd/hub";
     public final String BUILD = System.getenv("JENKINS_BUILD_NUMBER");
 
+    public final String BUILD_TAG = System.getenv("BUILD_TAG");
+
 
     private ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
     private ThreadLocal<String> sessionId = new ThreadLocal<String>();
@@ -106,7 +108,7 @@ import java.net.URL;
     @After()
     public void tierDown()
     {
-        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",sessionId.get(),jobName);
+        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",sessionId.get(),BUILD_TAG);
         System.out.println(message);
        UpdateResults(testResults);
         driver.get().quit();
