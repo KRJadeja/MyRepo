@@ -87,8 +87,8 @@ import java.net.URL;
         //id = ((RemoteWebDriver) getDriver()).getSessionId().toString();
         sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
 
-        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",sessionId.get(),jobName);
-        System.out.println(message);
+        //String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",sessionId.get(),jobName);
+        //System.out.println(message);
         //System.out.println("Session ID : "+getSessionId());
         //sauceClient = new SauceREST(USERNAME,ACCESS_KEY,DataCenter.US);
     }
@@ -106,6 +106,8 @@ import java.net.URL;
     @After()
     public void tierDown()
     {
+        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",sessionId.get(),jobName);
+        System.out.println(message);
        UpdateResults(testResults);
         driver.get().quit();
     }
