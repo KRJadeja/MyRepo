@@ -108,10 +108,11 @@ import java.net.URL;
     @After()
     public void tierDown()
     {
-        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",sessionId.get(),BUILD_TAG);
-        System.out.println(message);
-       UpdateResults(testResults);
         driver.get().quit();
+        UpdateResults(testResults);
+        String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s",sessionId.get(),jobName);
+        System.out.println(message);
+
     }
 
     @Override
