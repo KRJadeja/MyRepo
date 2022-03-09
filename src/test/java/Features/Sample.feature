@@ -11,6 +11,7 @@ Feature: Facebook Login
 #    When I enter email as 'xyz123@gmail.com'
 #    And I click on login button
 #    Then It should redirect to login page with error message
+  @ebay
   Scenario: Ebay Search by Category
     Given I am on Ebay Home
     When I search for 'Soap' in 'Baby' Category
