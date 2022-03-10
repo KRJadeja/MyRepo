@@ -17,9 +17,9 @@ Feature: Facebook Login
     When I search for 'Soap' in 'Baby' Category
     Then It should display all items in that Category
 
-    Scenario: Logo present on Google page
-      Given I open Google home page
-      When I verify that the logo is present on Google page
+#    Scenario: Logo present on Google page
+#      Given I open Google home page
+#      When I verify that the logo is present on Google page
 
     Scenario: Login with invalid credential
       Given I open Facebook login page
