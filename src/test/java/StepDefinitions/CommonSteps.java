@@ -42,7 +42,7 @@ import java.net.URL;
     public String ACCESS_KEY =System.getenv("SAUCE_ACCESS_KEY");
     public SauceOnDemandAuthentication authentication = new SauceOnDemandAuthentication(USERNAME,ACCESS_KEY);
     //public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.saucelabs.com:443/wd/hub";
-    public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.us-west-1.saucelabs.com:443/wd/hub";
+    public final String URLS = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.us-west-1.saucelabs.com:443/wd/hub";
     public final String BUILD = System.getenv("JENKINS_BUILD_NUMBER");
 
     public final String BUILD_TAG = System.getenv("BUILD_TAG");
@@ -84,7 +84,7 @@ import java.net.URL;
         options.setCapability("build",BUILD);
 
         //driver = new RemoteWebDriver(new URL(URL), options);
-        driver.set(new RemoteWebDriver(new URL(URL), options));
+        driver.set(new RemoteWebDriver(new URL(URLS), options));
 
         //id = ((RemoteWebDriver) getDriver()).getSessionId().toString();
         sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
