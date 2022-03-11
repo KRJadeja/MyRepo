@@ -59,9 +59,11 @@ import java.net.URL;
     //private String jobInfo;
 
     @Before(order = 0)
-    public void getScenarioName(Scenario scenario) {
+    public void getScenarioName(Scenario scenario) throws MalformedURLException {
         jobName = scenario.getName();
         testResults = false;
+        String url = new URL(URLS).toString();
+        System.out.println(url);
     }
    /* @Before
     public void setUp() throws MalformedURLException {
@@ -70,6 +72,7 @@ import java.net.URL;
             driver.get().manage().window().maximize();
 
     }*/
+
     @Before
     public void setUp() throws MalformedURLException {
         //boolean st=System.getProperty("runOnSauce").equalsIgnoreCase("yes");
@@ -83,8 +86,7 @@ import java.net.URL;
         options.setCapability("name", jobName);
         options.setCapability("build",BUILD);
 
-        String url = new URL(URLS).toString();
-        System.out.println(url);
+
         //driver = new RemoteWebDriver(new URL(URL), options);
         driver.set(new RemoteWebDriver(new URL(URLS), options));
 
