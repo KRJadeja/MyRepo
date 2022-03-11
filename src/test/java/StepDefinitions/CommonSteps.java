@@ -72,9 +72,9 @@ import java.net.URL;
     }*/
     @Before
     public void setUp() throws MalformedURLException {
-        boolean st=System.getProperty("runOnSauce").equalsIgnoreCase("yes");
+        //boolean st=System.getProperty("runOnSauce").equalsIgnoreCase("yes");
 
-    if(st) {
+   // if(st) {
         //To Run on Saucelabs
         ChromeOptions options = new ChromeOptions();
         options.setCapability("version", "latest");
@@ -95,12 +95,12 @@ import java.net.URL;
         //System.out.println(message);
         //System.out.println("Session ID : "+getSessionId());
         //sauceClient = new SauceREST(USERNAME,ACCESS_KEY,DataCenter.US);
-    }
+    /*}
     else {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver.set(new ChromeDriver());
         driver.get().manage().window().maximize();
-    }
+    }*/
 
     }
     public WebDriver getDriver()
