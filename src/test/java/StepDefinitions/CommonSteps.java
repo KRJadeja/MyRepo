@@ -83,6 +83,8 @@ import java.net.URL;
         options.setCapability("name", jobName);
         options.setCapability("build",BUILD);
 
+        String url = new URL(URLS).toString();
+        System.out.println(url);
         //driver = new RemoteWebDriver(new URL(URL), options);
         driver.set(new RemoteWebDriver(new URL(URLS), options));
 
