@@ -19,7 +19,7 @@ Feature: Ebay Home Page Scenarios
     When I click on Advanced Link
     Then I navigate to Advanced Search page
 
-  @H1 @smoke
+  @smoke
     Scenario: Login with basic auth
       Given I launch herokuapp with basic auth
       Then I navigate to Welcome page
