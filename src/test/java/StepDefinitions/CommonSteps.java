@@ -7,6 +7,7 @@ import io.cucumber.java.Scenario;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -35,7 +36,6 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
     public void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
         testResults = false;
-        System.out.println(URLS);
     }
 
     @Before
@@ -56,7 +56,8 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
             String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionId.get(), jobName);
             System.out.println(message);
         } else {
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+            //System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+            WebDriverManager.chromedriver().setup();
             driver.set(new ChromeDriver());
             driver.get().manage().window().maximize();
         }
