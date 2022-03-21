@@ -58,7 +58,7 @@ Feature: Ebay Home Page Scenarios
 #      | Fashion | https://www.ebay.com/b/Fashion/bn_7000259856                   | Fashion products for sale |
 #      | Toys    | https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497             | Toys & Hobbies products for sale |
 
-
+@H1
   Scenario Outline: Home page links
     Given I am on Eaby Home Page
     When I click on '<link>'
