@@ -1,9 +1,11 @@
 package Elements;
 
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 
 import java.util.List;
 
@@ -22,10 +24,13 @@ public class EbayHome_Elements {
 	@FindBy(xpath = "//*[@name=\"login\"]") public WebElement loginbtn;
 	@FindBy(xpath = "//*[@id=\"content\"]/div/p") public WebElement msg;
 
+	@FindBy(name ="commit1") public WebElement tryme;
+	@FindBy(id ="delay") public WebElement hiddenele;
+
 
 	public EbayHome_Elements(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
+
 }

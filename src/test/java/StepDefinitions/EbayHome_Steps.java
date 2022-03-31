@@ -130,4 +130,19 @@ public class EbayHome_Steps {
 		System.out.println("Page Redircted to : "+ acturl);
 
 	}
+
+	@Given("I am on required page")
+	public void iAmOnRequiredPage() {
+		common_actions.goToUrl("https://qavbox.github.io/demo/delay/");
+	}
+
+	@When("I click on try me")
+	public void iClickOnTryMe() {
+		ebayhome_actions.clicktryme();
+	}
+
+	@Then("displays text {string}")
+	public void displaysTextIAppearedAfterSec(String str) {
+		String acttext=ebayhome_actions.gettext();
+	}
 }

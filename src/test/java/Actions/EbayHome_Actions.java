@@ -6,8 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import StepDefinitions.CommonSteps;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
+import java.time.Duration;
 import java.util.List;
 
 public class EbayHome_Actions {
@@ -62,4 +66,35 @@ public class EbayHome_Actions {
 	public String showwelcomemsg() {
 		return ebayhome_elements.msg.getText();
 	}
+
+	public void clicktryme() {
+		ebayhome_elements.tryme.click();
+	}
+
+	public String gettext() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+		//wait.until(waitforelement(ebayhome_elements.hiddenele));
+		wait.until(ExpectedConditions.textToBePresentInElement(ebayhome_elements.hiddenele,"appeared"));
+
+
+		return ebayhome_elements.hiddenele.getText();
+	}
+
+	/*public static ExpectedCondition<Boolean> waitforelement(WebElement e) {
+		return new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver webDriver) {
+				boolean flag = false;
+				try {
+					if (e.isDisplayed()) {
+						System.out.println("HERE");
+						flag = true;
+					}
+
+				} catch (Exception e) {
+					System.out.println("Wait for element");
+				}
+				return flag;
+			}
+		};
+	}*/
 }
