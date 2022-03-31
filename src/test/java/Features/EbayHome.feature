@@ -13,7 +13,12 @@ Feature: Ebay Home Page Scenarios
 #      | FViewer | P@ssw@rd  |
 
  # @P1 @P2
- @H12
+ @H1
+  Scenario: Advanced Search Link
+    Given I am on Eaby Home Page
+    When I click on Advanced Link
+    Then I navigate to Advanced Search page
+  @H1
   Scenario: Advanced Search Link
     Given I am on Eaby Home Page
     When I click on Advanced Link
