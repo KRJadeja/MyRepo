@@ -40,9 +40,9 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
 
     @Before
     public void setUp() throws MalformedURLException {
-        boolean st = System.getProperty("runOnSauce").equalsIgnoreCase("yes");
+        //boolean st = System.getProperty("runOnSauce").equalsIgnoreCase("yes");
 
-        if (st) {
+        //if (st) {
             //To Run on Saucelabs
             ChromeOptions options = new ChromeOptions();
             options.setCapability("version", "latest");
@@ -55,12 +55,12 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
 
             String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionId.get(), jobName);
             System.out.println(message);
-        } else {
+      /*  } else {
             //System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
             WebDriverManager.chromedriver().setup();
             driver.set(new ChromeDriver());
             driver.get().manage().window().maximize();
-        }
+        }*/
    }
 
     public WebDriver getDriver() {
