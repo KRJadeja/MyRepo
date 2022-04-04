@@ -29,28 +29,12 @@ public class ConfigFileReader {
         }
     }
 
-    public String getDriverPath() {
-        String driverPath = properties.getProperty("driverPath");
-        if (driverPath != null) return driverPath;
-        else throw new RuntimeException("driverPath not specified in the Configuration_e1.properties file.");
-    }
-
-    public long getImplicitlyWait() {
-        String implicitlyWait = properties.getProperty("implicitlyWait");
-        if (implicitlyWait != null) return Long.parseLong(implicitlyWait);
-        else throw new RuntimeException("implicitlyWait not specified in the Configuration_e1.properties file.");
-    }
-
-    public String getApplicationUrl() {
+   public String getApplicationUrl() {
         String url = properties.getProperty("url");
-        String pwd = getViewerPassword();
-        pwd=pwd.replace("@","%40");
-        pwd=pwd.replace("$","%24");
-        String credentials = getViewerUserName()+":"+pwd;
-        url= url.replace("https://","https://"+credentials+"@");
         if (url != null) return url;
         else throw new RuntimeException("url not specified in the Configuration_e1.properties file.");
     }
+
     public String getViewerUserName()
     {
         String UserName = properties.getProperty("ViewerUserName");
@@ -61,6 +45,32 @@ public class ConfigFileReader {
     public String getViewerPassword()
     {
         String Password = properties.getProperty("ViewerPassword");
+        if (Password != null) return Password;
+        else throw new RuntimeException("Password not specified in the Configuration_e1.properties file.");
+    }
+
+    public String getSubmitterUserName() {
+        String UserName = properties.getProperty("SubmiterUserName");
+
+        if (UserName != null) return UserName;
+        else throw new RuntimeException("UserName not specified in the Configuration_e1.properties file.");
+    }
+
+    public String getSubmitterPassword() {
+        String Password = properties.getProperty("SubmiterPassword");
+        if (Password != null) return Password;
+        else throw new RuntimeException("Password not specified in the Configuration_e1.properties file.");
+    }
+
+    public String getApproverUserName() {
+        String UserName = properties.getProperty("ApproverUserName");
+
+        if (UserName != null) return UserName;
+        else throw new RuntimeException("UserName not specified in the Configuration_e1.properties file.");
+    }
+
+    public String getApproverPassword() {
+        String Password = properties.getProperty("ApproverPassword");
         if (Password != null) return Password;
         else throw new RuntimeException("Password not specified in the Configuration_e1.properties file.");
     }

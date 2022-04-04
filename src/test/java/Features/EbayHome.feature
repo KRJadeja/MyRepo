@@ -18,11 +18,7 @@ Feature: Ebay Home Page Scenarios
     Given I am on Eaby Home Page
     When I click on Advanced Link
     Then I navigate to Advanced Search page
-  @H1
-  Scenario: Advanced Search Link
-    Given I am on Eaby Home Page
-    When I click on Advanced Link
-    Then I navigate to Advanced Search page
+
 @H12
   Scenario: My scenario
     Given I am on required page
@@ -31,8 +27,22 @@ Feature: Ebay Home Page Scenarios
 
   @smoke
     Scenario: Login with basic auth
-      Given I launch herokuapp with basic auth
+      Given User logged in as Viewer
       Then I navigate to Welcome page
+      And User logged in as submitter
+      Then I navigate to Welcome page
+    And User logged in as approver
+    Then I navigate to Welcome page
+
+  @smoke
+  Scenario: Login with basic auth submitter
+    Given User logged in as submitter
+    Then I navigate to Welcome page
+
+  @smoke
+  Scenario: Login with basic auth approver
+    Given User logged in as approver
+    Then I navigate to Welcome page
 
   #@P1 @setCookies @Test
 
@@ -68,7 +78,7 @@ Feature: Ebay Home Page Scenarios
 #      | Fashion | https://www.ebay.com/b/Fashion/bn_7000259856                   | Fashion products for sale |
 #      | Toys    | https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497             | Toys & Hobbies products for sale |
 
-@H1
+@H2
   Scenario Outline: Home page links
     Given I am on Eaby Home Page
     When I click on '<link>'

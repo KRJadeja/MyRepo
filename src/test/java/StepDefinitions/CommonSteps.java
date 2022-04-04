@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import Util.ConfigFileReader;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -32,6 +33,8 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
     private ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
     private ThreadLocal<String> sessionId = new ThreadLocal<String>();
 
+   String st = System.getProperty("runOnSauce");
+
     @Before(order = 0)
     public void getScenarioName(Scenario scenario) {
         jobName = scenario.getName();
@@ -40,9 +43,17 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
 
     @Before
     public void setUp() throws MalformedURLException {
-        //boolean st = System.getProperty("runOnSauce").equalsIgnoreCase("yes");
+       //boolean st = System.getProperty("runOnSauce").equalsIgnoreCase("yes");
 
-        //if (st) {
+        if(st==null){
+            st = "false";
+        }
+        else{
+            st =  System.getProperty("runOnSauce");
+        }
+        System.out.println("runOnSauce : "+ st);
+
+        if (st.equalsIgnoreCase("yes")) {
             //To Run on Saucelabs
             ChromeOptions options = new ChromeOptions();
             options.setCapability("version", "latest");
@@ -55,12 +66,12 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
 
             String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionId.get(), jobName);
             System.out.println(message);
-      /*  } else {
+        } else {
             //System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
             WebDriverManager.chromedriver().setup();
             driver.set(new ChromeDriver());
             driver.get().manage().window().maximize();
-        }*/
+        }
    }
 
     public WebDriver getDriver() {
@@ -70,7 +81,7 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
     @After()
     public void tierDown() {
         driver.get().quit();
-        UpdateResults(testResults);
+        if(st.equalsIgnoreCase("yes")) UpdateResults(testResults);
     }
 
     @Override
