@@ -99,17 +99,17 @@ public class EbayHome_Steps {
 		ebayhome_actions.enterUidPwd(configFileReader.getViewerUserName(),configFileReader.getViewerPassword());
 	}
 
-	@Given("I launch herokuapp with basic auth")
+	@Given("User logged in as Viewer")
 	public void iLaunchHerokuappWithBasicAuth() throws InterruptedException {
 		//String str = "https://"+MyAppProperties.getUserId()+":"+MyAppProperties.getPwd()+"@the-internet.herokuapp.com/basic_auth";
 		//System.out.println("URL  "+str);
-		common_actions.gotoBaseUrl();
+		common_actions.gotoViewerPage();
 	}
 
 	@Then("I navigate to Welcome page")
 	public void iNavigateToWelcomePage() {
 		String actmsg = ebayhome_actions.showwelcomemsg();
-		Assert.assertEquals("Welcome",actmsg);
+		Assert.assertTrue(actmsg.contains("Congratulations"));
 		CommonSteps.testResults=true;
 	}
 
@@ -144,5 +144,15 @@ public class EbayHome_Steps {
 	@Then("displays text {string}")
 	public void displaysTextIAppearedAfterSec(String str) {
 		String acttext=ebayhome_actions.gettext();
+	}
+
+	@Given("User logged in as submitter")
+	public void userLoggedInAsSubmitter() {
+		common_actions.gotoSubmitterurl();
+	}
+
+	@Given("User logged in as approver")
+	public void userLoggedInAsApprover() {
+		common_actions.gotoApproverurl();
 	}
 }

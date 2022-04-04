@@ -4,7 +4,16 @@ import Elements.Common_Elements;
 import StepDefinitions.CommonSteps;
 import org.openqa.selenium.WebDriver;
 import Util.ConfigFileReader;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v85.network.Network;
+import org.openqa.selenium.devtools.v85.network.model.Headers;
+
 import java.net.MalformedURLException;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 
 public class Common_Actions {
@@ -14,7 +23,7 @@ public class Common_Actions {
     Common_Elements common_elements;
     ConfigFileReader configFileReader = new ConfigFileReader();
 
-    String env = System.getProperty("environment");
+    String url = configFileReader.getApplicationUrl();
 
     public Common_Actions(CommonSteps commonsteps) throws MalformedURLException {
         this.driver = commonsteps.getDriver();
@@ -37,20 +46,67 @@ public class Common_Actions {
         driver.navigate().to(nurl);
     }
 
-    public void gotoBaseUrl() throws InterruptedException {
+    public void gotoViewerPage() throws InterruptedException {
 
-        String ssourl = configFileReader.getApplicationUrl();
-        //System.out.println(ssourl+"======"+configFileReader.getViewerPassword());
-        driver.get(ssourl);
-        Thread.sleep(1000);
+        // Get the devtools from the running driver and create a session
+        DevTools devTools = ((ChromeDriver)driver).getDevTools();
+        devTools.createSession();
 
-        System.out.println("Environment==="+ env);
-        if(env.equals("e1")) {
-            driver.navigate().to("https://www.facebook.com/");
-            common_elements.loginId.sendKeys(configFileReader.getViewerUserName());
-            common_elements.loginpwd.sendKeys(configFileReader.getViewerPassword());
-            common_elements.loginbtn.click();
-        }
+        // Enable the Network domain of devtools
+        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        String auth = configFileReader.getViewerUserName() + ":" + configFileReader.getViewerPassword();
 
+        // Encoding the username and password using Base64 (java.util)
+        String encodeToString = Base64.getEncoder().encodeToString(auth.getBytes());
+
+        // Pass the network header -> Authorization : Basic <encoded String>
+        Map<String, Object> headers = new HashMap<>();
+        headers.put("Authorization", "Basic " + encodeToString);
+        devTools.send(Network.setExtraHTTPHeaders(new Headers(headers)));
+
+        driver.get(url);
+
+    }
+
+    public void gotoSubmitterurl() {
+
+       // Get the devtools from the running driver and create a session
+        DevTools devTools = ((ChromeDriver)driver).getDevTools();
+        devTools.createSession();
+
+        // Enable the Network domain of devtools
+        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        String auth = configFileReader.getSubmitterUserName() + ":" + configFileReader.getSubmitterPassword();
+
+        // Encoding the username and password using Base64 (java.util)
+        String encodeToString = Base64.getEncoder().encodeToString(auth.getBytes());
+
+        // Pass the network header -> Authorization : Basic <encoded String>
+        Map<String, Object> headers = new HashMap<>();
+        headers.put("Authorization", "Basic " + encodeToString);
+        devTools.send(Network.setExtraHTTPHeaders(new Headers(headers)));
+
+        driver.get(url);
+    }
+
+    public void gotoApproverurl() {
+
+        // Get the devtools from the running driver and create a session
+        DevTools devTools = ((ChromeDriver)driver).getDevTools();
+        devTools.createSession();
+
+        // Enable the Network domain of devtools
+        devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
+        String auth = configFileReader.getApproverUserName() + ":" + configFileReader.getApproverPassword();
+
+        // Encoding the username and password using Base64 (java.util)
+        String encodeToString = Base64.getEncoder().encodeToString(auth.getBytes());
+
+        // Pass the network header -> Authorization : Basic <encoded String>
+        Map<String, Object> headers = new HashMap<>();
+        headers.put("Authorization", "Basic " + encodeToString);
+        devTools.send(Network.setExtraHTTPHeaders(new Headers(headers)));
+
+        driver.get(url);
     }
 }
