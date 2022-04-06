@@ -80,9 +80,9 @@ public class CommonSteps /*implements SauceOnDemandSessionIdProvider */{
         }
    }
 
-   /* public WebDriver getDriver() {
-        return driver.get();
-    }*/
+    public WebDriver getDriver() {
+        return driver;
+    }
 
     @After()
     public void tierDown() {
