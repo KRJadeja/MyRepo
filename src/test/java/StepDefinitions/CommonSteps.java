@@ -16,11 +16,12 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import com.saucelabs.saucerest.SauceREST;
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
+import org.openqa.selenium.remote.SessionId;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class CommonSteps implements SauceOnDemandSessionIdProvider {
+public class CommonSteps /*implements SauceOnDemandSessionIdProvider */{
 
   public static boolean testResults;
     public final String BUILD = System.getenv("JENKINS_BUILD_NUMBER");
@@ -30,8 +31,10 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
     //public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.saucelabs.com:443/wd/hub";
     public final String URLS = "https://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.us-west-1.saucelabs.com:443/wd/hub";
     public String jobName;
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
-    private static ThreadLocal<String> sessionId = new ThreadLocal<String>();
+    //private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+    //private static ThreadLocal<String> sessionId = new ThreadLocal<String>();
+    private static WebDriver driver;
+    private String sessionId;
 
    String st = System.getProperty("runOnSauce");
 
@@ -61,38 +64,43 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
             options.setCapability("name", jobName);
             options.setCapability("build", BUILD);
 
-            driver.set(new RemoteWebDriver(new URL(URLS), options));
-            sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
+           // driver.set(new RemoteWebDriver(new URL(URLS), options));
+            //sessionId.set(((RemoteWebDriver) getDriver()).getSessionId().toString());
 
-            String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionId.get(), jobName);
+            driver = new RemoteWebDriver(new URL(URLS), options);
+            sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
+
+            String message = String.format("SauceOnDemandSessionID=%1$s job-name=%2$s", sessionId, jobName);
             System.out.println(message);
         } else {
             //System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
             WebDriverManager.chromedriver().setup();
-            driver.set(new ChromeDriver());
-            driver.get().manage().window().maximize();
+            //driver.set(new ChromeDriver());
+           // driver.get().manage().window().maximize();
         }
    }
 
-    public WebDriver getDriver() {
+   /* public WebDriver getDriver() {
         return driver.get();
-    }
+    }*/
 
     @After()
     public void tierDown() {
-        driver.get().quit();
+       // driver.get().quit();
+        driver.quit();
         if(st.equalsIgnoreCase("yes")) UpdateResults(testResults);
     }
 
-    @Override
+   /* @Override
     public String getSessionId() {
         return sessionId.get();
-    }
+    }*/
 
     public void UpdateResults(boolean testResults) {
         SauceREST saucerest = new SauceREST(USERNAME, ACCESS_KEY);
         Map<String, Object> updates = new HashMap<String, Object>();
         updates.put("passed", testResults);
-        saucerest.updateJobInfo(getSessionId(), updates);
+        saucerest.updateJobInfo(sessionId, updates);
+        //saucerest.updateJobInfo(getSessionId(), updates);
     }
 }
