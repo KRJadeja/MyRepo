@@ -30,8 +30,8 @@ public class CommonSteps implements SauceOnDemandSessionIdProvider {
     //public final String URL = "https://"+ authentication.getUsername()+":"+authentication.getAccessKey()+"@ondemand.saucelabs.com:443/wd/hub";
     public final String URLS = "https://" + authentication.getUsername() + ":" + authentication.getAccessKey() + "@ondemand.us-west-1.saucelabs.com:443/wd/hub";
     public String jobName;
-    private ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
-    private ThreadLocal<String> sessionId = new ThreadLocal<String>();
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+    private static ThreadLocal<String> sessionId = new ThreadLocal<String>();
 
    String st = System.getProperty("runOnSauce");
 
