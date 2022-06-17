@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         glue = "StepDefinitions",
         plugin = {"pretty", "html:target/Report/report.html"},
         //plugin = {"pretty", "json:target/Report/report.json"},
-        tags="@H1 or @H2",
+        //tags="@H1 or @H2",
         publish = false,
         dryRun = false
 )
