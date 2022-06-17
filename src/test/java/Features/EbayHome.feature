@@ -13,13 +13,13 @@ Feature: Ebay Home Page Scenarios
 #      | FViewer | P@ssw@rd  |
 
  # @P1 @P2
- @H1
+ @e1
   Scenario: Advanced Search Link
     Given I am on Eaby Home Page
     When I click on Advanced Link
     Then I navigate to Advanced Search page
 
-@H12
+@e2
   Scenario: My scenario
     Given I am on required page
     When I click on try me
@@ -78,7 +78,7 @@ Feature: Ebay Home Page Scenarios
 #      | Fashion | https://www.ebay.com/b/Fashion/bn_7000259856                   | Fashion products for sale |
 #      | Toys    | https://www.ebay.com/b/Toys-Hobbies/220/bn_1865497             | Toys & Hobbies products for sale |
 
-@H2
+@e1 @e2
   Scenario Outline: Home page links
     Given I am on Eaby Home Page
     When I click on '<link>'
