@@ -23,7 +23,7 @@ Feature: Ebay Home Page Scenarios
   Scenario: My scenario
     Given I am on required page
     When I click on try me
-    Then displays text "I appeared after 5 se"
+    Then displays text "I appeared after 5 sec"
 
   @smoke
     Scenario: Login with basic auth
