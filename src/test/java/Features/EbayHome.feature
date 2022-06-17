@@ -13,7 +13,7 @@ Feature: Ebay Home Page Scenarios
 #      | FViewer | P@ssw@rd  |
 
  # @P1 @P2
- @e1
+ @e1 @e2
   Scenario: Advanced Search Link
     Given I am on Eaby Home Page
     When I click on Advanced Link
@@ -23,7 +23,7 @@ Feature: Ebay Home Page Scenarios
   Scenario: My scenario
     Given I am on required page
     When I click on try me
-    Then displays text "I appeared after 5 sec"
+    Then displays text "I appeared after 5 se"
 
   @smoke
     Scenario: Login with basic auth
