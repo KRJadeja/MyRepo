@@ -144,6 +144,7 @@ public class EbayHome_Steps {
 	@Then("displays text {string}")
 	public void displaysTextIAppearedAfterSec(String str) {
 		String acttext=ebayhome_actions.gettext();
+		Assert.assertEquals(str,acttext);
 	}
 
 	@Given("User logged in as submitter")
