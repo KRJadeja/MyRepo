@@ -9,11 +9,29 @@ import java.util.Properties;
 public class ConfigFileReader {
 
     private Properties properties;
-    private final String propertyFilePath = "src/test/java/Config/Configuration_e1.properties";
+    //private final String propertyFilePath = "src/test/java/Config/Configuration_e1.properties";
+    private String environment = System.getProperty("env");
+
 
 
     public ConfigFileReader() {
         BufferedReader reader;
+        String propertyFilePath;
+       //System.out.println("Environment is "+environment);
+       if(environment.equalsIgnoreCase("e1"))
+       {
+           System.out.println("Environment is "+environment);
+           propertyFilePath = "src/test/java/Config/Configuration_e1.properties";
+       }
+       else if(environment.equalsIgnoreCase("e2")){
+           System.out.println("Environment is "+environment);
+           propertyFilePath = "src/test/java/Config/Configuration_e2.properties";
+       }
+       else{
+           System.out.println("Environment is "+environment);
+           propertyFilePath = "src/test/java/Config/Configuration_e1.properties";
+       }
+        
         try {
             reader = new BufferedReader(new FileReader(propertyFilePath));
             properties = new Properties();
