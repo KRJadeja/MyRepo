@@ -23,7 +23,8 @@ public class EbayHome_Steps {
 	
 	@Given("I am on Eaby Home Page")
 	public void i_am_on_Eaby_Home_Page() {
-		common_actions.goToUrl("https://www.ebay.com/");
+		//common_actions.goToUrl("https://www.ebay.com/");
+		common_actions.goToUrl(configFileReader.getApplicationUrl());
 		//common_actions.navigaetUrl(configFileReader.getApplicationUrl());
 
 	}
