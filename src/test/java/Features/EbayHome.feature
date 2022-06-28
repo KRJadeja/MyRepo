@@ -1,3 +1,4 @@
+@all
 Feature: Ebay Home Page Scenarios
 #Background: Facebook login page
 #  Given I am on Facebook Login page
