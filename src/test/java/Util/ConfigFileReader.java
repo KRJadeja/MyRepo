@@ -49,7 +49,7 @@ public class ConfigFileReader {
 
    public String getApplicationUrl() {
         String url = properties.getProperty("url");
-        Systen.out.println("URL is "+ url);
+        System.out.println("URL is "+ url);
         if (url != null) return url;
         else throw new RuntimeException("url not specified in the Configuration_e1.properties file.");
     }
